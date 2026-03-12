@@ -46,7 +46,6 @@ fun ModalBody(state: ModalCreateFormState, modifier: Modifier = Modifier) {
             },
             isValid = true,
         )
-//
         ModalBodyInput(
             title = "태그",
             essential = false,
