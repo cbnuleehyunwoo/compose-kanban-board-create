@@ -130,7 +130,7 @@ fun ModalBody(
 )
 @Composable
 private fun ModalBodyPreview() {
-    var state = remember { ModalCreateFormState() }
+    val state = remember { ModalCreateFormState() }
     ModalBody(
         state = state,
     )

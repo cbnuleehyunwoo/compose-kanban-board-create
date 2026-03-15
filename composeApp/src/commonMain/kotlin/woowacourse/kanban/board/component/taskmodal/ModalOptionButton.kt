@@ -38,8 +38,8 @@ fun ModalOptionButton(
     content: @Composable () -> Unit,
     isSelected: Boolean,
 ) {
-    var containerColor = if (isSelected) selectedContainerColor else Color.White
-    var borderColor = if (isSelected) selectedBorderColor else Color(0xFFE5E7EB)
+    val containerColor = if (isSelected) selectedContainerColor else Color.White
+    val borderColor = if (isSelected) selectedBorderColor else Color(0xFFE5E7EB)
     Box(
         modifier = modifier
             .width(200.dp)
