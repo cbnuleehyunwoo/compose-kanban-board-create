@@ -8,8 +8,10 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performSemanticsAction
 import androidx.compose.ui.test.runComposeUiTest
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.unit.sp
 import kotlin.test.assertEquals
 import org.junit.Test
+import woowacourse.kanban.board.component.common.KanbanTitle
 
 @OptIn(ExperimentalTestApi::class)
 class KanbanCardTitleTest {
@@ -18,7 +20,11 @@ class KanbanCardTitleTest {
         val title = "너무 너무 긴 제목너무 너무 긴 제목너무 너무 긴 제목"
 
         setContent {
-            KanbanCardTitle(title, modifier = Modifier.testTag("title"))
+            KanbanTitle(
+                title,
+                modifier = Modifier.testTag("title"),
+                fontSize = 16.sp,
+            )
         }
 
         val textLayoutResult = mutableListOf<TextLayoutResult>()

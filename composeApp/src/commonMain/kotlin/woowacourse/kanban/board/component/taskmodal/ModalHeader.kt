@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.common.KanbanTitle
 
 @Composable
 fun ModalHeader(modifier: Modifier = Modifier) {
@@ -27,11 +28,12 @@ fun ModalHeader(modifier: Modifier = Modifier) {
             .fillMaxWidth()
             .padding(all = 24.dp),
     ) {
-        Text(
-            text = "새 태스크 생성",
+        KanbanTitle(
+            title = "새 태스크 생성",
             fontSize = 20.sp,
             fontWeight = FontWeight.SemiBold,
         )
+
         Icon(
             imageVector = Icons.Default.Close,
             contentDescription = "모달 닫기",

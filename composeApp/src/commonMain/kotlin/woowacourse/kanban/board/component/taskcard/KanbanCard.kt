@@ -17,7 +17,9 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.DrawableResource
+import woowacourse.kanban.board.component.common.KanbanTitle
 
 /**
  * @param tags 최대 5개까지만 표시되는 태그 리스트입니다. 5개를 초과하면 상위 5개만 렌더링됩니다.
@@ -44,7 +46,10 @@ fun KanbanCard(
             .padding(17.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
-        KanbanCardTitle(kanbanCardForm.title)
+        KanbanTitle(
+            title = kanbanCardForm.title,
+            fontSize = 16.sp,
+        )
 
         if (kanbanCardForm.content.isNotBlank()) {
             KanbanCardContent(kanbanCardForm.content)
