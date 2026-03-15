@@ -35,13 +35,11 @@ class ModalCreateFormState {
 
         val tags = tag
             .split(",")
-            .map {
-                if (it.isBlank()) {
-                    errorTagMessage = "태그 형식이 올바르지 않습니다."
-                    return false
-                }
-                it.trim()
-            }
+            .map { it.trim() }
+        if (tags.any { it.isBlank() }) {
+            errorTagMessage = "태그 형식이 올바르지 않습니다."
+            return false
+        }
 
         if (tags.size > 5) {
             errorTagMessage = "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
