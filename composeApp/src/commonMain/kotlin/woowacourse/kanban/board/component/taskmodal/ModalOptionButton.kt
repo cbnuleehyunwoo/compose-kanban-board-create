@@ -108,7 +108,7 @@ fun ModalOptionAssignee(
     name: String,
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(all = 12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
