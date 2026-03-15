@@ -23,13 +23,24 @@ import org.jetbrains.compose.resources.DrawableResource
  * @param tags 최대 5개까지만 표시되는 태그 리스트입니다. 5개를 초과하면 상위 5개만 렌더링됩니다.
  */
 @Composable
-fun KanbanCard(kanbanCardForm: KanbanCardForm, modifier: Modifier = Modifier, crewImage: DrawableResource? = null) {
+fun KanbanCard(
+    kanbanCardForm: KanbanCardForm,
+    modifier: Modifier = Modifier,
+    crewImage: DrawableResource? = null,
+) {
 
     Column(
         modifier = modifier
             .width(286.dp)
-            .background(Color.White, RoundedCornerShape(10.dp))
-            .border(Dp.Hairline, Color.Gray, RoundedCornerShape(10.dp))
+            .background(
+                Color.White,
+                RoundedCornerShape(10.dp),
+            )
+            .border(
+                Dp.Hairline,
+                Color.Gray,
+                RoundedCornerShape(10.dp),
+            )
             .padding(17.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
@@ -43,7 +54,10 @@ fun KanbanCard(kanbanCardForm: KanbanCardForm, modifier: Modifier = Modifier, cr
             KanbanCardTags(tags = kanbanCardForm.tags)
         }
 
-        HorizontalDivider(thickness = Dp.Hairline, color = Color.LightGray)
+        HorizontalDivider(
+            thickness = Dp.Hairline,
+            color = Color.LightGray,
+        )
 
         KanbanCardProfile(
             crewName = kanbanCardForm.crewName,
@@ -62,7 +76,10 @@ data class KanbanCardInfo(
 )
 
 class KanbanCardPreviewParameterProvider : PreviewParameterProvider<KanbanCardInfo> {
-    val tags = listOf("컴포넌트", "성능")
+    val tags = listOf(
+        "컴포넌트",
+        "성능",
+    )
     override val values = sequenceOf(
         KanbanCardInfo(
             title = "LazyColumn 컴포넌트 구현",
@@ -91,7 +108,7 @@ class KanbanCardPreviewParameterProvider : PreviewParameterProvider<KanbanCardIn
 @Preview
 @Composable
 private fun KanbanCardPreview(@PreviewParameter(KanbanCardPreviewParameterProvider::class) kanbanCardInfo: KanbanCardInfo) {
-    Box(modifier = Modifier.padding(12.dp)) {
+    Box(modifier = Modifier.padding(all = 12.dp)) {
         KanbanCard(
             kanbanCardForm = KanbanCardForm(
                 title = kanbanCardInfo.title,
@@ -108,12 +125,20 @@ private fun KanbanCardPreview(@PreviewParameter(KanbanCardPreviewParameterProvid
 @Preview
 @Composable
 private fun KanbanCardMaxPreview() {
-    Box(modifier = Modifier.padding(12.dp)) {
+    Box(modifier = Modifier.padding(all = 12.dp)) {
         KanbanCard(
             kanbanCardForm = KanbanCardForm(
                 title = "너무너무 긴 제목은 한 줄까지만 노출합니다. 그렇습니다. 감사합니다.",
                 crewName = "바드바드바드바드바드바드바드바드바드바드바드바드바드바드",
-                tags = listOf("컴포넌트", "성능", "긴 태그", "최대로", "5자까지", "5개제한임.", "6개임"),
+                tags = listOf(
+                    "컴포넌트",
+                    "성능",
+                    "긴 태그",
+                    "최대로",
+                    "5자까지",
+                    "5개제한임.",
+                    "6개임",
+                ),
                 content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.".repeat(3),
             ),
         )

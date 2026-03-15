@@ -22,11 +22,20 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun KanbanCardProfile(crewName: String, modifier: Modifier = Modifier, crewImage: DrawableResource? = null) {
-    val imageModifier = Modifier.size(24.dp).clip(CircleShape)
+fun KanbanCardProfile(
+    crewName: String,
+    modifier: Modifier = Modifier,
+    crewImage: DrawableResource? = null,
+) {
+    val imageModifier = Modifier
+        .size(24.dp)
+        .clip(CircleShape)
 
     Row(
-        modifier = modifier.padding(end = 20.dp, bottom = 10.dp),
+        modifier = modifier.padding(
+            end = 20.dp,
+            bottom = 10.dp,
+        ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {

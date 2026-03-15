@@ -52,7 +52,7 @@ private fun ModalBodyInputPreview() {
     Box(
         modifier = Modifier.padding(all = 10.dp),
     ) {
-        var state by remember { mutableStateOf("") }
+        var state by remember { mutableStateOf(value = "") }
         ModalBodyInput(
             title = "제목",
             essential = true,

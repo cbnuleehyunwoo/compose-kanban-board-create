@@ -8,7 +8,10 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun KanbanCardContent(content: String, modifier: Modifier = Modifier) {
+fun KanbanCardContent(
+    content: String,
+    modifier: Modifier = Modifier,
+) {
     Text(
         text = content,
         modifier = modifier,

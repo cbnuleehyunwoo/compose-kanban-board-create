@@ -9,7 +9,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun KanbanCardTags(tags: List<String>, modifier: Modifier = Modifier) {
+fun KanbanCardTags(
+    tags: List<String>,
+    modifier: Modifier = Modifier,
+) {
     FlowRow(
         modifier = modifier.semantics { contentDescription = "칸반 카드 태그 목록" },
         horizontalArrangement = Arrangement.spacedBy(8.dp),
