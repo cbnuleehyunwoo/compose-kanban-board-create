@@ -25,15 +25,15 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ModalAction(
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     HorizontalDivider(
         thickness = Dp.Hairline,
         color = Color.LightGray,
     )
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp),
         horizontalArrangement = Arrangement.End,

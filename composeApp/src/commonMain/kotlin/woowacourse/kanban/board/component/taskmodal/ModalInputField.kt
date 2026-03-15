@@ -27,7 +27,9 @@ fun ModalInputField(
     modifier: Modifier = Modifier,
 ) {
     val color = if (isValid) Color.Black else Color.Red
-    Column {
+    Column(
+        modifier = modifier,
+    ) {
         TextField(
             modifier = Modifier
                 .fillMaxWidth()

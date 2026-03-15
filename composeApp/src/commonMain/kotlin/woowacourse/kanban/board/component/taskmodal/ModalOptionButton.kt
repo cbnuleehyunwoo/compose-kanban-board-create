@@ -31,12 +31,12 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ModalOptionButton(
-    modifier: Modifier = Modifier,
     selectedContainerColor: Color,
     selectedBorderColor: Color,
     onClick: () -> Unit,
     content: @Composable () -> Unit,
     isSelected: Boolean,
+    modifier: Modifier = Modifier,
 ) {
     val containerColor = if (isSelected) selectedContainerColor else Color.White
     val borderColor = if (isSelected) selectedBorderColor else Color(0xFFE5E7EB)

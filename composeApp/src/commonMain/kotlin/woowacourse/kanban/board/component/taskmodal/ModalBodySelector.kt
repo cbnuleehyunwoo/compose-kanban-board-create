@@ -19,11 +19,12 @@ import androidx.compose.ui.unit.dp
 fun ModalBodySelector(
     title: String,
     essential: Boolean,
-    modifier: Modifier = Modifier,
     items: List<String>,
     content: @Composable (item: String, id: Int) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Column(
+        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         ModalInputTitle(
