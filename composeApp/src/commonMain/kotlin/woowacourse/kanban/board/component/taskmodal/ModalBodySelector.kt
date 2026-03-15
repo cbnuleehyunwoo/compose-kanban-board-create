@@ -14,6 +14,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun ModalBodySelector(
@@ -54,16 +56,10 @@ fun ModalBodySelector(
 private fun ModalBodySelectorOptionPreview() {
     var selectedId by remember { mutableIntStateOf(value = 0) }
 
-    val names = listOf(
-        "In Progress",
-        "To Do",
-        "Done",
-    )
-
     ModalBodySelector(
         title = "상태",
         essential = true,
-        items = names,
+        items = TaskState.getStateNames(),
         content = @Composable { name, id ->
             ModalOptionButton(
                 onClick = {
@@ -88,17 +84,16 @@ private fun ModalBodySelectorOptionPreview() {
 @Composable
 private fun ModalOptionAssigneePreview() {
     var selectedId by remember { mutableIntStateOf(value = 0) }
-    val names = listOf(
-        "커비",
-        "바드",
-        "다이노",
-        "아오",
-        "하로",
+    val assignees = listOf(
+        Assignee(name = "커비"),
+        Assignee(name = "바드"),
+        Assignee(name = "아오"),
+        Assignee(name = "하로"),
     )
     ModalBodySelector(
         title = "담당자",
         essential = true,
-        items = names,
+        items = assignees.map { it.name },
         content = @Composable { name, id ->
             ModalOptionButton(
                 onClick = {

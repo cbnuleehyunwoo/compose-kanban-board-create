@@ -11,10 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun ModalBody(
     state: ModalCreateFormState,
+    assignees: List<Assignee>,
     modifier: Modifier = Modifier,
 ) {
     val titleMessage = if (state.isValidTitle) "" else "제목을 입력해주세요."
@@ -62,15 +65,10 @@ fun ModalBody(
             isValid = state.isValidTag,
         )
 
-        val stateNames = listOf(
-            "To Do",
-            "In Progress",
-            "Done",
-        )
         ModalBodySelector(
             title = "상태",
             essential = true,
-            items = stateNames,
+            items = TaskState.getStateNames(),
             content = @Composable { name, id ->
                 ModalOptionButton(
                     modifier = Modifier.height(52.dp),
@@ -88,17 +86,10 @@ fun ModalBody(
             },
         )
 
-        val assigneeNames = listOf(
-            "커비",
-            "바드",
-            "다이노",
-            "아오",
-            "하로",
-        )
         ModalBodySelector(
             title = "담당자",
             essential = true,
-            items = assigneeNames,
+            items = assignees.map { it.name },
             content = @Composable { name, id ->
                 ModalOptionButton(
                     modifier = Modifier.height(68.dp),
@@ -131,7 +122,15 @@ fun ModalBody(
 @Composable
 private fun ModalBodyPreview() {
     val state = remember { ModalCreateFormState() }
+
+    val assignees = listOf(
+        Assignee("커비"),
+        Assignee("바드"),
+        Assignee("아오"),
+        Assignee("하로"),
+    )
     ModalBody(
         state = state,
+        assignees = assignees,
     )
 }
