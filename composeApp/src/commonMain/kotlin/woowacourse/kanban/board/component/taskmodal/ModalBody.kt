@@ -36,6 +36,7 @@ fun ModalBody(
             state = state.title,
             onValueChange = {
                 state.title = it
+                state.updateTitleValidation()
             },
             isValid = state.isValidTitle,
         )
@@ -61,6 +62,7 @@ fun ModalBody(
             state = state.tag,
             onValueChange = {
                 state.tag = it
+                state.updateTagValidation()
             },
             isValid = state.isValidTag,
         )
@@ -110,7 +112,8 @@ fun ModalBody(
         )
 
         ModalAction(
-            onClick = { state.validate() },
+            onClick = {},
+            enabled = state.isValidContents
         )
     }
 }

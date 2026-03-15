@@ -12,46 +12,52 @@ class ModalCreateFormState {
     var status by mutableIntStateOf(value = 0)
     var assignee by mutableIntStateOf(value = 0)
 
+    val isValidContents: Boolean
+        get() = isValidTitle && isValidTag
+
     var isValidTitle by mutableStateOf(value = true)
 
     var isValidTag by mutableStateOf(value = true)
 
     var errorTagMessage by mutableStateOf(value = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.")
 
-    fun validate() {
-        isTitleValid()
-        isValidTag = isTagValid()
-    }
 
-    private fun isTitleValid() {
+    fun updateTitleValidation() {
         isValidTitle = title.isNotBlank()
     }
 
-    private fun isTagValid(): Boolean {
+    fun updateTagValidation() {
         if (tag.isEmpty()) {
             errorTagMessage = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."
-            return true
+            isValidTag = true
+            return
         }
 
-        val tags = tag
-            .split(",")
-            .map { it.trim() }
+        val tags = parseTags()
         if (tags.any { it.isBlank() }) {
             errorTagMessage = "태그 형식이 올바르지 않습니다."
-            return false
+            isValidTag = false
+            return
         }
 
         if (tags.size > 5) {
             errorTagMessage = "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
-            return false
+            isValidTag = false
+            return
         }
         tags.forEach {
             if (it.length > 5) {
                 errorTagMessage = "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
-                return false
+                isValidTag = false
+                return
             }
         }
         errorTagMessage = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."
-        return true
+        isValidTag = true
+        return
     }
+
+    private fun parseTags(): List<String> =
+        tag.split(",")
+            .map { it.trim() }
 }

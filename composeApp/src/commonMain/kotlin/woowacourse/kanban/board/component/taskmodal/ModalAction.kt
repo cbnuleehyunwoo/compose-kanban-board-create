@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 fun ModalAction(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    enabled: Boolean,
 ) {
     HorizontalDivider(
         thickness = Dp.Hairline,
@@ -72,6 +73,7 @@ fun ModalAction(
                 disabledContainerColor = Color.Gray,
                 disabledContentColor = Color.White,
             ),
+            enabled = enabled,
             contentPadding = PaddingValues(all = 0.dp),
             shape = RoundedCornerShape(size = 10.dp),
         ) {
@@ -87,6 +89,9 @@ fun ModalAction(
 @Composable
 private fun ModalActionPreview() {
     Box(modifier = Modifier.padding(all = 10.dp)) {
-        ModalAction(onClick = {})
+        ModalAction(
+            onClick = {},
+            enabled = false
+        )
     }
 }
