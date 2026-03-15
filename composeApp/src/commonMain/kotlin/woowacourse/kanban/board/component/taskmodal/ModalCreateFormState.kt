@@ -33,7 +33,8 @@ class ModalCreateFormState {
             return true
         }
 
-        val tags = tag.split(",")
+        val tags = tag
+            .split(",")
             .map {
                 if (it.isBlank()) {
                     errorTagMessage = "태그 형식이 올바르지 않습니다."

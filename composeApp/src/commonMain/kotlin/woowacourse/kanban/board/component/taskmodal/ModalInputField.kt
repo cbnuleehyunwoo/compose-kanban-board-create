@@ -31,8 +31,15 @@ fun ModalInputField(
         TextField(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White, RoundedCornerShape(10.dp))
-                .border(width = 1.dp, color = color, shape = RoundedCornerShape(10.dp)),
+                .background(
+                    Color.White,
+                    RoundedCornerShape(10.dp),
+                )
+                .border(
+                    width = 1.dp,
+                    color = color,
+                    shape = RoundedCornerShape(10.dp),
+                ),
             value = value,
             colors = TextFieldDefaults.colors(
                 focusedIndicatorColor = Color.Transparent,
@@ -54,7 +61,9 @@ fun ModalInputField(
 
         Text(
             modifier = Modifier.padding(
-                top = 4.dp, start = 16.dp, end = 16.dp,
+                top = 4.dp,
+                start = 16.dp,
+                end = 16.dp,
             ),
             text = supportingText,
             fontSize = 12.sp,

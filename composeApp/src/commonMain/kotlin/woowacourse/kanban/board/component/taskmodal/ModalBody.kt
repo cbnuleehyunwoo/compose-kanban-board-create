@@ -13,7 +13,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ModalBody(state: ModalCreateFormState, modifier: Modifier = Modifier) {
+fun ModalBody(
+    state: ModalCreateFormState,
+    modifier: Modifier = Modifier,
+) {
     val titleMessage = if (state.isValidTitle) "" else "제목을 입력해주세요."
     Column(
         modifier = modifier

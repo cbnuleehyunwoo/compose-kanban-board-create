@@ -10,7 +10,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ModalInputTitle(title: String, essential: Boolean, modifier: Modifier = Modifier) {
+fun ModalInputTitle(
+    title: String,
+    essential: Boolean,
+    modifier: Modifier = Modifier,
+) {
     Text(
         text = "$title${if (essential) " *" else ""}",
         fontSize = 20.sp,

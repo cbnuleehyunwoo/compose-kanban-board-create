@@ -24,7 +24,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ModalAction(modifier: Modifier = Modifier, onClick: () -> Unit) {
+fun ModalAction(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
     HorizontalDivider(
         thickness = Dp.Hairline,
         color = Color.LightGray,

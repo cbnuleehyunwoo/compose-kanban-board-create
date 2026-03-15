@@ -45,8 +45,15 @@ fun ModalOptionButton(
             .width(200.dp)
             .clip(shape = RoundedCornerShape(10.dp))
             .background(containerColor)
-            .border(1.5.dp, borderColor, RoundedCornerShape(10.dp))
-            .clickable(enabled = true, onClick = onClick),
+            .border(
+                1.5.dp,
+                borderColor,
+                RoundedCornerShape(10.dp),
+            )
+            .clickable(
+                enabled = true,
+                onClick = onClick,
+            ),
         contentAlignment = Alignment.Center,
     ) {
         content()
@@ -90,7 +97,10 @@ private fun ModalOptionAssigneePreview() {
 }
 
 @Composable
-fun ModalOptionStatus(modifier: Modifier = Modifier, text: String) {
+fun ModalOptionStatus(
+    modifier: Modifier = Modifier,
+    text: String,
+) {
     Text(
         modifier = modifier,
         text = text,
@@ -98,9 +108,13 @@ fun ModalOptionStatus(modifier: Modifier = Modifier, text: String) {
 }
 
 @Composable
-fun ModalOptionAssignee(modifier: Modifier = Modifier, name: String) {
+fun ModalOptionAssignee(
+    modifier: Modifier = Modifier,
+    name: String,
+) {
     Row(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
             .padding(12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
