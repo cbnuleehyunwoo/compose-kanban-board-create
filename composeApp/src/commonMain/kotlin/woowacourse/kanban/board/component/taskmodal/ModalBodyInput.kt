@@ -50,7 +50,7 @@ fun ModalBodyInput(
 @Composable
 private fun ModalBodyInputPreview() {
     Box(
-        modifier = Modifier.padding(10.dp),
+        modifier = Modifier.padding(all = 10.dp),
     ) {
         var state by remember { mutableStateOf("") }
         ModalBodyInput(

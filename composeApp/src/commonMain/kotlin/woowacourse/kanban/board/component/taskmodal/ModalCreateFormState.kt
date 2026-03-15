@@ -6,17 +6,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 
 class ModalCreateFormState {
-    var title by mutableStateOf("")
-    var content by mutableStateOf("")
-    var tag by mutableStateOf("")
-    var status by mutableIntStateOf(0)
-    var assignee by mutableIntStateOf(0)
+    var title by mutableStateOf(value = "")
+    var content by mutableStateOf(value = "")
+    var tag by mutableStateOf(value = "")
+    var status by mutableIntStateOf(value = 0)
+    var assignee by mutableIntStateOf(value = 0)
 
-    var isValidTitle by mutableStateOf(true)
+    var isValidTitle by mutableStateOf(value = true)
 
-    var isValidTag by mutableStateOf(true)
+    var isValidTag by mutableStateOf(value = true)
 
-    var errorTagMessage by mutableStateOf("5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.")
+    var errorTagMessage by mutableStateOf(value = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.")
 
     fun validate() {
         isTitleValid()

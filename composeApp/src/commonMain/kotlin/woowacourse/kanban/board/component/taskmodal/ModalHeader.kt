@@ -25,7 +25,7 @@ fun ModalHeader(modifier: Modifier = Modifier) {
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
-            .padding(24.dp),
+            .padding(all = 24.dp),
     ) {
         Text(
             text = "새 태스크 생성",
@@ -44,7 +44,7 @@ fun ModalHeader(modifier: Modifier = Modifier) {
 @Composable
 private fun ModalHeaderPreview() {
     Box(
-        modifier = Modifier.padding(5.dp),
+        modifier = Modifier.padding(all = 5.dp),
     ) {
         ModalHeader()
     }

@@ -46,9 +46,9 @@ fun ModalOptionButton(
             .clip(shape = RoundedCornerShape(10.dp))
             .background(containerColor)
             .border(
-                1.5.dp,
-                borderColor,
-                RoundedCornerShape(10.dp),
+                width = 1.5.dp,
+                color = borderColor,
+                shape = RoundedCornerShape(10.dp),
             )
             .clickable(
                 enabled = true,
@@ -63,7 +63,7 @@ fun ModalOptionButton(
 @Preview
 @Composable
 private fun ModalOptionButtonPreview() {
-    var enabled by remember { mutableStateOf(false) }
+    var enabled by remember { mutableStateOf(value = false) }
     ModalOptionButton(
         onClick = {},
         content = {
@@ -81,7 +81,7 @@ private fun ModalOptionButtonPreview() {
 @Preview
 @Composable
 private fun ModalOptionAssigneePreview() {
-    var enabled by remember { mutableStateOf(false) }
+    var enabled by remember { mutableStateOf(value = false) }
     ModalOptionButton(
         onClick = {},
         content = {
@@ -115,7 +115,7 @@ fun ModalOptionAssignee(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp),
+            .padding(all = 12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {

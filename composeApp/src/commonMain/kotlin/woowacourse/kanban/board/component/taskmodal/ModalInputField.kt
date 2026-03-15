@@ -32,13 +32,13 @@ fun ModalInputField(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    Color.White,
-                    RoundedCornerShape(10.dp),
+                    color = Color.White,
+                    shape = RoundedCornerShape(size = 10.dp),
                 )
                 .border(
                     width = 1.dp,
                     color = color,
-                    shape = RoundedCornerShape(10.dp),
+                    shape = RoundedCornerShape(size = 10.dp),
                 ),
             value = value,
             colors = TextFieldDefaults.colors(

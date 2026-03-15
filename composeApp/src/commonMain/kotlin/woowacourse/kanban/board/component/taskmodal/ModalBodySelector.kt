@@ -32,7 +32,7 @@ fun ModalBodySelector(
         )
 
         LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
+            columns = GridCells.Fixed(count = 3),
             horizontalArrangement = Arrangement.spacedBy(12.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
@@ -51,7 +51,7 @@ fun ModalBodySelector(
 @Preview
 @Composable
 private fun ModalBodySelectorOptionPreview() {
-    var selectedId by remember { mutableIntStateOf(0) }
+    var selectedId by remember { mutableIntStateOf(value = 0) }
 
     val names = listOf(
         "In Progress",
@@ -86,7 +86,7 @@ private fun ModalBodySelectorOptionPreview() {
 @Preview
 @Composable
 private fun ModalOptionAssigneePreview() {
-    var selectedId by remember { mutableIntStateOf(0) }
+    var selectedId by remember { mutableIntStateOf(value = 0) }
     val names = listOf(
         "커비",
         "바드",

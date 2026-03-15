@@ -49,8 +49,8 @@ fun ModalAction(
                 disabledContainerColor = Color.White,
                 disabledContentColor = Color.Black,
             ),
-            contentPadding = PaddingValues(0.dp),
-            shape = RoundedCornerShape(10.dp),
+            contentPadding = PaddingValues(all = 0.dp),
+            shape = RoundedCornerShape(size = 10.dp),
         ) {
             Text(
                 text = "취소",
@@ -73,8 +73,8 @@ fun ModalAction(
                 disabledContainerColor = Color.Gray,
                 disabledContentColor = Color.White,
             ),
-            contentPadding = PaddingValues(0.dp),
-            shape = RoundedCornerShape(10.dp),
+            contentPadding = PaddingValues(all = 0.dp),
+            shape = RoundedCornerShape(size = 10.dp),
         ) {
             Text(
                 text = "생성",
@@ -87,7 +87,7 @@ fun ModalAction(
 @Preview
 @Composable
 private fun ModalActionPreview() {
-    Box(modifier = Modifier.padding(10.dp)) {
+    Box(modifier = Modifier.padding(all = 10.dp)) {
         ModalAction(onClick = {})
     }
 }

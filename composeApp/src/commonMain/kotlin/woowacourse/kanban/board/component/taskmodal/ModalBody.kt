@@ -21,7 +21,7 @@ fun ModalBody(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .padding(24.dp),
+            .padding(all = 24.dp),
         verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         ModalBodyInput(
