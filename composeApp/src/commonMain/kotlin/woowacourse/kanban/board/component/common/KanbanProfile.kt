@@ -22,7 +22,11 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun KanbanAssigneeProfile(crewName: String, modifier: Modifier = Modifier, crewImage: DrawableResource? = null) {
+fun KanbanAssigneeProfile(
+    crewName: String,
+    modifier: Modifier = Modifier,
+    crewImage: DrawableResource? = null,
+) {
     val imageModifier = Modifier
         .size(24.dp)
         .clip(CircleShape)

@@ -15,7 +15,7 @@ fun KanbanTitle(
     modifier: Modifier = Modifier,
     fontWeight: FontWeight = FontWeight.Bold,
     fontColor: Color = Color.Black,
-    maxLines: Int = 1
+    maxLines: Int = 1,
 ) {
     Text(
         text = title,
