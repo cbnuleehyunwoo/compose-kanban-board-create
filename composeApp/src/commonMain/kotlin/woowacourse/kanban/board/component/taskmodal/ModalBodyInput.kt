@@ -46,7 +46,7 @@ fun ModalBodyInput(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalBodyInputPreview() {
     Box(

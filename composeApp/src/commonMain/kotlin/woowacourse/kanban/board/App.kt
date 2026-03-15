@@ -6,7 +6,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import woowacourse.kanban.board.component.taskmodal.ModalCreateForm
 
 @Composable
-@Preview
+@Preview(
+    showBackground = true,
+    widthDp = 672,
+    heightDp = 1000,
+)
 fun App() {
     MaterialTheme {
         ModalCreateForm()

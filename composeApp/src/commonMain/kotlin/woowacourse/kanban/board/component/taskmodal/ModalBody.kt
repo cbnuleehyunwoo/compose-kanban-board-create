@@ -119,6 +119,7 @@ fun ModalBody(
 }
 
 @Preview(
+    showBackground = true,
     widthDp = 672,
     heightDp = 820,
 )

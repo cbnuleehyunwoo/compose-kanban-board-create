@@ -14,7 +14,7 @@ fun IconExample() {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun IconExamplePreview() {
     IconExample()

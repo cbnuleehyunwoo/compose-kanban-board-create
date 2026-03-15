@@ -22,7 +22,7 @@ fun ModalInputTitle(
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalInputTitlePreview() {
     Column(

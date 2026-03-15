@@ -115,7 +115,7 @@ class KanbanCardPreviewParameterProvider : PreviewParameterProvider<KanbanCardIn
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun KanbanCardPreview(@PreviewParameter(KanbanCardPreviewParameterProvider::class) kanbanCardInfo: KanbanCardInfo) {
     Box(modifier = Modifier.padding(all = 12.dp)) {
@@ -132,7 +132,7 @@ private fun KanbanCardPreview(@PreviewParameter(KanbanCardPreviewParameterProvid
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun KanbanCardMaxPreview() {
     Box(modifier = Modifier.padding(all = 12.dp)) {

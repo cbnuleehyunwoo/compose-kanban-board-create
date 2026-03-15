@@ -22,7 +22,7 @@ fun RowExample() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun RowExamplePreview() {
     RowExample()

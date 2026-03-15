@@ -35,7 +35,7 @@ fun TagChip(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun TagChipPreview() {
     TagChip(name = "다섯글자.")

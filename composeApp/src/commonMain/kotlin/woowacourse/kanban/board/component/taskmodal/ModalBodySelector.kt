@@ -51,7 +51,7 @@ fun ModalBodySelector(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalBodySelectorOptionPreview() {
     var selectedId by remember { mutableIntStateOf(value = 0) }
@@ -80,7 +80,7 @@ private fun ModalBodySelectorOptionPreview() {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalOptionAssigneePreview() {
     var selectedId by remember { mutableIntStateOf(value = 0) }

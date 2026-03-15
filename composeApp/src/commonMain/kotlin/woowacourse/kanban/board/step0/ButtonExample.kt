@@ -26,7 +26,7 @@ fun FavoriteButtonExample() {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ButtonExampleExamplePreview() {
     Column {

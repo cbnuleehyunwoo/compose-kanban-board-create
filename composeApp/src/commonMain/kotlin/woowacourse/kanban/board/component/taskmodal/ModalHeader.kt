@@ -41,7 +41,7 @@ fun ModalHeader(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalHeaderPreview() {
     Box(

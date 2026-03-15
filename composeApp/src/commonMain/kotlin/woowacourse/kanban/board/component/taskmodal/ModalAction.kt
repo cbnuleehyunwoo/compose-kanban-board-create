@@ -85,7 +85,7 @@ fun ModalAction(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalActionPreview() {
     Box(modifier = Modifier.padding(all = 10.dp)) {

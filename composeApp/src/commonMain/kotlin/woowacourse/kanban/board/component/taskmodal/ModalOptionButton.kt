@@ -55,7 +55,7 @@ fun ModalOptionButton(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalOptionButtonPreview() {
     var enabled by remember { mutableStateOf(value = false) }
@@ -73,7 +73,7 @@ private fun ModalOptionButtonPreview() {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ModalOptionAssigneePreview() {
     var enabled by remember { mutableStateOf(value = false) }

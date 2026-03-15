@@ -15,7 +15,7 @@ fun ImageExample() {
     )
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun ImageExamplePreview() {
     ImageExample()
