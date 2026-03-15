@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import woowacourse.kanban.board.model.FormError
 
 class ModalCreateFormState {
     var title by mutableStateOf(value = "")
@@ -13,48 +14,27 @@ class ModalCreateFormState {
     var assignee by mutableIntStateOf(value = 0)
 
     val isValidContents: Boolean
-        get() = isValidTitle && isValidTag
+        get() = titleError == FormError.TITLE_SUCCESS &&
+                tagError == FormError.TAG_SUCCESS
 
-    var isValidTitle by mutableStateOf(value = true)
+    var titleError by mutableStateOf(FormError.TITLE_SUCCESS)
+    var tagError by mutableStateOf(FormError.TAG_SUCCESS)
 
-    var isValidTag by mutableStateOf(value = true)
-
-    var errorTagMessage by mutableStateOf(value = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다.")
 
 
     fun updateTitleValidation() {
-        isValidTitle = title.isNotBlank()
+        titleError = if (title.isNotBlank()) FormError.TITLE_SUCCESS
+        else FormError.TITLE_FORM_INVALID
     }
 
     fun updateTagValidation() {
-        if (tag.isEmpty()) {
-            errorTagMessage = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."
-            isValidTag = true
-            return
-        }
-
         val tags = parseTags()
-        if (tags.any { it.isBlank() }) {
-            errorTagMessage = "태그 형식이 올바르지 않습니다."
-            isValidTag = false
-            return
+        tagError = when {
+            tag.isEmpty() -> FormError.TAG_SUCCESS
+            tags.any { it.isBlank() } -> FormError.TAG_FORM_INVALID
+            tags.size > 5 || tags.any {it.length > 5} -> FormError.TAG_OVER_N
+            else-> FormError.TAG_SUCCESS
         }
-
-        if (tags.size > 5) {
-            errorTagMessage = "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
-            isValidTag = false
-            return
-        }
-        tags.forEach {
-            if (it.length > 5) {
-                errorTagMessage = "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
-                isValidTag = false
-                return
-            }
-        }
-        errorTagMessage = "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."
-        isValidTag = true
-        return
     }
 
     private fun parseTags(): List<String> =

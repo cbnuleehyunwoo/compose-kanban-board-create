@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.FormError
 import woowacourse.kanban.board.model.TaskState
 
 @Composable
@@ -20,7 +21,6 @@ fun ModalBody(
     assignees: List<Assignee>,
     modifier: Modifier = Modifier,
 ) {
-    val titleMessage = if (state.isValidTitle) "" else "제목을 입력해주세요."
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -32,13 +32,13 @@ fun ModalBody(
             essential = true,
             placeHolder = "태스크 제목을 입력하세요",
             maxLines = 1,
-            supportingText = titleMessage,
+            supportingText = state.titleError.message,
             state = state.title,
             onValueChange = {
                 state.title = it
                 state.updateTitleValidation()
             },
-            isValid = state.isValidTitle,
+            isValid = state.titleError == FormError.TITLE_SUCCESS,
         )
 
         ModalBodyInput(
@@ -58,13 +58,13 @@ fun ModalBody(
             essential = false,
             placeHolder = "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)",
             maxLines = 1,
-            supportingText = state.errorTagMessage,
+            supportingText = state.tagError.message,
             state = state.tag,
             onValueChange = {
                 state.tag = it
                 state.updateTagValidation()
             },
-            isValid = state.isValidTag,
+            isValid = state.tagError == FormError.TAG_SUCCESS,
         )
 
         ModalBodySelector(
@@ -113,7 +113,7 @@ fun ModalBody(
 
         ModalAction(
             onClick = {},
-            enabled = state.isValidContents
+            enabled = state.isValidContents,
         )
     }
 }

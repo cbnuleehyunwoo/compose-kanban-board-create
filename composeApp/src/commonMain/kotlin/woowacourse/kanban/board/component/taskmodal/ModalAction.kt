@@ -91,7 +91,7 @@ private fun ModalActionPreview() {
     Box(modifier = Modifier.padding(all = 10.dp)) {
         ModalAction(
             onClick = {},
-            enabled = false
+            enabled = false,
         )
     }
 }
