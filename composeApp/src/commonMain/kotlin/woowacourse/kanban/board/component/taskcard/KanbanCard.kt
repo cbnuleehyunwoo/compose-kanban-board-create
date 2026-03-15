@@ -19,17 +19,14 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.jetbrains.compose.resources.DrawableResource
+import woowacourse.kanban.board.component.common.KanbanAssigneeProfile
 import woowacourse.kanban.board.component.common.KanbanTitle
 
 /**
  * @param tags 최대 5개까지만 표시되는 태그 리스트입니다. 5개를 초과하면 상위 5개만 렌더링됩니다.
  */
 @Composable
-fun KanbanCard(
-    kanbanCardForm: KanbanCardForm,
-    modifier: Modifier = Modifier,
-    crewImage: DrawableResource? = null,
-) {
+fun KanbanCard(kanbanCardForm: KanbanCardForm, modifier: Modifier = Modifier, crewImage: DrawableResource? = null) {
 
     Column(
         modifier = modifier
@@ -64,9 +61,13 @@ fun KanbanCard(
             color = Color.LightGray,
         )
 
-        KanbanCardProfile(
+        KanbanAssigneeProfile(
             crewName = kanbanCardForm.crewName,
             crewImage = crewImage,
+            modifier = Modifier.padding(
+                end = 20.dp,
+                bottom = 10.dp,
+            ),
         )
     }
 }
@@ -141,8 +142,6 @@ private fun KanbanCardMaxPreview() {
                     "긴 태그",
                     "최대로",
                     "5자까지",
-                    "5개제한임.",
-                    "6개임",
                 ),
                 content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.".repeat(3),
             ),

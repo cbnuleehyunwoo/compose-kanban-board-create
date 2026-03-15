@@ -31,6 +31,7 @@ fun ModalCreateForm(modifier: Modifier = Modifier) {
 }
 
 @Preview(
+    showBackground = true,
     widthDp = 672,
     heightDp = 1000,
 )

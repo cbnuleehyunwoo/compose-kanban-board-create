@@ -1,9 +1,8 @@
-package woowacourse.kanban.board.component.taskcard
+package woowacourse.kanban.board.component.common
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -14,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -22,20 +22,13 @@ import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun KanbanCardProfile(
-    crewName: String,
-    modifier: Modifier = Modifier,
-    crewImage: DrawableResource? = null,
-) {
+fun KanbanAssigneeProfile(crewName: String, modifier: Modifier = Modifier, crewImage: DrawableResource? = null) {
     val imageModifier = Modifier
         .size(24.dp)
         .clip(CircleShape)
 
     Row(
-        modifier = modifier.padding(
-            end = 20.dp,
-            bottom = 10.dp,
-        ),
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
     ) {
@@ -44,6 +37,7 @@ fun KanbanCardProfile(
                 imageVector = Icons.Default.AccountCircle,
                 contentDescription = "기본 이미지",
                 modifier = imageModifier,
+                tint = Color.Gray,
             )
         } else {
             Image(
@@ -62,8 +56,8 @@ fun KanbanCardProfile(
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
-private fun KanbanCardProfilePreview() {
-    KanbanCardProfile(crewName = "바드")
+private fun KanbanAssigneeProfilePreview() {
+    KanbanAssigneeProfile(crewName = "바드")
 }
