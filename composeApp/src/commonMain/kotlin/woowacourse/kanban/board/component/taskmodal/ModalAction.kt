@@ -39,9 +39,8 @@ fun ModalAction(
         horizontalArrangement = Arrangement.End,
     ) {
         Button(
-            modifier = Modifier
-                .height(44.dp)
-                .width(68.dp),
+            contentPadding = PaddingValues(all = 0.dp),
+            shape = RoundedCornerShape(size = 10.dp),
             onClick = {},
             colors = ButtonColors(
                 containerColor = Color.White,
@@ -49,8 +48,9 @@ fun ModalAction(
                 disabledContainerColor = Color.White,
                 disabledContentColor = Color.Black,
             ),
-            contentPadding = PaddingValues(all = 0.dp),
-            shape = RoundedCornerShape(size = 10.dp),
+            modifier = Modifier
+                .height(44.dp)
+                .width(68.dp),
         ) {
             Text(
                 text = "취소",
@@ -63,9 +63,9 @@ fun ModalAction(
         )
 
         Button(
-            modifier = Modifier
-                .height(44.dp)
-                .width(68.dp),
+            enabled = enabled,
+            contentPadding = PaddingValues(all = 0.dp),
+            shape = RoundedCornerShape(size = 10.dp),
             onClick = onClick,
             colors = ButtonColors(
                 containerColor = Color.Blue,
@@ -73,9 +73,9 @@ fun ModalAction(
                 disabledContainerColor = Color.Gray,
                 disabledContentColor = Color.White,
             ),
-            enabled = enabled,
-            contentPadding = PaddingValues(all = 0.dp),
-            shape = RoundedCornerShape(size = 10.dp),
+            modifier = Modifier
+                .height(44.dp)
+                .width(68.dp),
         ) {
             Text(
                 text = "생성",

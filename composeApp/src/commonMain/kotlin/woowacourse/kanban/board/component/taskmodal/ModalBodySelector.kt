@@ -26,8 +26,8 @@ fun ModalBodySelector(
     modifier: Modifier = Modifier,
 ) {
     Column(
-        modifier = modifier,
         verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier,
     ) {
         ModalInputTitle(
             title = title,
@@ -62,19 +62,18 @@ private fun ModalBodySelectorOptionPreview() {
         items = TaskState.getStateNames(),
         content = @Composable { name, id ->
             ModalOptionButton(
+                isSelected = selectedId == id,
+                selectedContainerColor = Color(0xFFEFF6FF),
+                selectedBorderColor = Color(0xFF1447E6),
                 onClick = {
                     selectedId = id
                 },
-                modifier = Modifier,
                 content = {
                     ModalOptionStatus(
                         modifier = Modifier,
                         text = name,
                     )
                 },
-                isSelected = selectedId == id,
-                selectedContainerColor = Color(0xFFEFF6FF),
-                selectedBorderColor = Color(0xFF1447E6),
             )
         },
     )
@@ -96,6 +95,9 @@ private fun ModalOptionAssigneePreview() {
         items = assignees.map { it.name },
         content = @Composable { name, id ->
             ModalOptionButton(
+                isSelected = selectedId == id,
+                selectedContainerColor = Color(0xFFEFF6FF),
+                selectedBorderColor = Color(0xFF615FFF),
                 onClick = {
                     selectedId = id
                 },
@@ -105,9 +107,6 @@ private fun ModalOptionAssigneePreview() {
                         name = name,
                     )
                 },
-                isSelected = selectedId == id,
-                selectedContainerColor = Color(0xFFEFF6FF),
-                selectedBorderColor = Color(0xFF615FFF),
             )
         },
     )

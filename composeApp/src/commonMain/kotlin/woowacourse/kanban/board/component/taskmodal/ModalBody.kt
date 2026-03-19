@@ -45,12 +45,12 @@ fun ModalBody(
             placeHolder = "태스크 제목을 입력하세요",
             maxLines = 1,
             supportingText = titleSupportMessage,
-            state = state.title,
             onValueChange = {
                 state.title = it
                 state.updateTitleValidation()
             },
-            isValid = state.titleError == null
+            isValid = state.titleError == null,
+            state = state.title,
         )
 
         ModalBodyInput(
@@ -60,10 +60,10 @@ fun ModalBody(
             maxLines = 5,
             supportingText = "",
             state = state.content,
+            isValid = true,
             onValueChange = {
                 state.content = it
             },
-            isValid = true,
         )
         ModalBodyInput(
             title = "태그",
@@ -72,11 +72,11 @@ fun ModalBody(
             maxLines = 1,
             supportingText = tagSupportMessage,
             state = state.tag,
+            isValid = state.tagError == null,
             onValueChange = {
                 state.tag = it
                 state.updateTagValidation()
             },
-            isValid = state.tagError == null
         )
 
         ModalBodySelector(
@@ -85,17 +85,17 @@ fun ModalBody(
             items = TaskState.getStateNames(),
             content = @Composable { name, id ->
                 ModalOptionButton(
-                    modifier = Modifier.height(52.dp),
                     onClick = { state.status = id },
-                    content = {
-                        ModalOptionStatus(
-                            modifier = Modifier,
-                            text = name,
-                        )
-                    },
                     isSelected = state.status == id,
                     selectedContainerColor = Color(0xFFEFF6FF),
                     selectedBorderColor = Color(0xFF1447E6),
+                    modifier = Modifier.height(52.dp),
+                    content = {
+                        ModalOptionStatus(
+                            text = name,
+                            modifier = Modifier,
+                        )
+                    },
                 )
             },
         )
@@ -106,26 +106,26 @@ fun ModalBody(
             items = assignees.map { it.name },
             content = @Composable { name, id ->
                 ModalOptionButton(
+                    isSelected = state.assignee == id,
+                    selectedBorderColor = Color(0xFF615FFF),
+                    selectedContainerColor = Color(0xFFEFF6FF),
                     modifier = Modifier.height(68.dp),
                     onClick = {
                         state.assignee = id
                     },
                     content = {
                         ModalOptionAssignee(
-                            modifier = Modifier,
                             name = name,
+                            modifier = Modifier,
                         )
                     },
-                    isSelected = state.assignee == id,
-                    selectedContainerColor = Color(0xFFEFF6FF),
-                    selectedBorderColor = Color(0xFF615FFF),
                 )
             },
         )
 
         ModalAction(
-            onClick = {},
             enabled = state.isValidContents,
+            onClick = {},
         )
     }
 }

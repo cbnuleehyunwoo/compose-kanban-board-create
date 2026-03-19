@@ -78,16 +78,16 @@ private fun ModalOptionButtonPreview() {
 private fun ModalOptionAssigneePreview() {
     var enabled by remember { mutableStateOf(value = false) }
     ModalOptionButton(
-        onClick = {},
-        content = {
-            ModalOptionAssignee(
-                modifier = Modifier,
-                name = "다이노",
-            )
-        },
         isSelected = enabled,
         selectedContainerColor = Color(0xFFEFF6FF),
         selectedBorderColor = Color(0xFF615FFF),
+        onClick = {},
+        content = {
+            ModalOptionAssignee(
+                name = "다이노",
+                modifier = Modifier,
+            )
+        },
     )
 }
 
@@ -97,8 +97,8 @@ fun ModalOptionStatus(
     text: String,
 ) {
     Text(
-        modifier = modifier,
         text = text,
+        modifier = modifier,
     )
 }
 
@@ -108,11 +108,11 @@ fun ModalOptionAssignee(
     name: String,
 ) {
     Row(
+        horizontalArrangement = Arrangement.spacedBy(12.dp),
+        verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 12.dp),
-        horizontalArrangement = Arrangement.spacedBy(12.dp),
-        verticalAlignment = Alignment.CenterVertically,
     ) {
 
         KanbanAssigneeProfile(
