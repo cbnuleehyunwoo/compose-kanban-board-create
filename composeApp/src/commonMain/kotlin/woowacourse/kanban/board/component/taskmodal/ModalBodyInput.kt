@@ -20,7 +20,7 @@ fun ModalBodyInput(
     essential: Boolean,
     placeHolder: String,
     maxLines: Int,
-    supportingText: String,
+    supportingText: String?,
     state: String,
     isValid: Boolean,
     onValueChange: (String) -> Unit,

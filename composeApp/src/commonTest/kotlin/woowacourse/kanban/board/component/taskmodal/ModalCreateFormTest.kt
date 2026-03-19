@@ -14,17 +14,13 @@ import kotlin.test.Test
 class ModalCreateFormTest {
 
     @Test
-    fun `제목을 입력하지 않고 생성 버튼을 누르면 에러 메시지가 표시된다`() = runComposeUiTest {
+    fun `제목을 입력하지 않으면 에러 메시지가 표시된다`() = runComposeUiTest {
         // given
         setContent {
             CompositionLocalProvider(LocalDensity provides Density(density = 0.1f)) {
                 ModalCreateForm()
             }
         }
-
-        // when
-        onNodeWithText("생성").performClick()
-
         // then
         onNodeWithText("제목을 입력해주세요.").assertExists()
     }
@@ -77,6 +73,6 @@ class ModalCreateFormTest {
         onNodeWithText("생성").performClick()
 
         // then
-        onNodeWithText("태그는 5자 이내로 5개까지만 등록할 수 있습니다.").assertExists()
+        onNodeWithText("태그는 5자 이내로 5개 까지만 등록할 수 있습니다.").assertExists()
     }
 }

@@ -32,13 +32,13 @@ fun ModalBody(
             essential = true,
             placeHolder = "태스크 제목을 입력하세요",
             maxLines = 1,
-            supportingText = state.titleError.message,
+            supportingText = state.titleError?.message,
             state = state.title,
             onValueChange = {
                 state.title = it
                 state.updateTitleValidation()
             },
-            isValid = state.titleError == FormError.TITLE_SUCCESS,
+            isValid = state.titleError == null
         )
 
         ModalBodyInput(
@@ -58,13 +58,13 @@ fun ModalBody(
             essential = false,
             placeHolder = "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)",
             maxLines = 1,
-            supportingText = state.tagError.message,
+            supportingText = state.tagError?.message,
             state = state.tag,
             onValueChange = {
                 state.tag = it
                 state.updateTagValidation()
             },
-            isValid = state.tagError == FormError.TAG_SUCCESS,
+            isValid = state.tagError == null
         )
 
         ModalBodySelector(
