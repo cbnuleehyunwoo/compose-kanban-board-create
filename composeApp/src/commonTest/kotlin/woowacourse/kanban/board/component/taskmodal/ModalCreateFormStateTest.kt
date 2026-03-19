@@ -1,6 +1,7 @@
 package woowacourse.kanban.board.component.taskmodal
 
-import woowacourse.kanban.board.model.FormError
+import woowacourse.kanban.board.model.TagError
+import woowacourse.kanban.board.model.TitleError
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -13,7 +14,7 @@ class ModalCreateFormStateTest {
         state.updateTitleValidation()
         assertEquals(
             state.titleError,
-            FormError.TITLE_FORM_INVALID,
+            TitleError.TITLE_FORM_INVALID,
         )
     }
 
@@ -57,7 +58,7 @@ class ModalCreateFormStateTest {
         state.updateTagValidation()
         assertEquals(
             state.tagError,
-            FormError.TAG_OVER_N,
+            TagError.TAG_OVER_N,
         )
     }
 
@@ -68,7 +69,7 @@ class ModalCreateFormStateTest {
         state.updateTagValidation()
         assertEquals(
             state.tagError,
-            FormError.TAG_OVER_N,
+            TagError.TAG_OVER_N,
         )
     }
 
@@ -79,7 +80,7 @@ class ModalCreateFormStateTest {
         state.updateTagValidation()
         assertEquals(
             state.tagError,
-            FormError.TAG_FORM_INVALID,
+            TagError.TAG_FORM_INVALID,
         )
     }
 }

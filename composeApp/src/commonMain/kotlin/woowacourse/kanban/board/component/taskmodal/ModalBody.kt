@@ -12,8 +12,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.model.Assignee
-import woowacourse.kanban.board.model.FormError
+import woowacourse.kanban.board.model.TagError
 import woowacourse.kanban.board.model.TaskState
+import woowacourse.kanban.board.model.TitleError
 
 @Composable
 fun ModalBody(
@@ -21,6 +22,17 @@ fun ModalBody(
     assignees: List<Assignee>,
     modifier: Modifier = Modifier,
 ) {
+    val tagSupportMessage = when(state.tagError) {
+        TagError.TAG_FORM_INVALID -> "태그 형식이 올바르지 않습니다."
+        TagError.TAG_OVER_N -> "태그는 5자 이내로 5개까지만 등록할 수 있습니다."
+        null -> "5자 이내의 태그를 최대 5개까지 등록할 수 있습니다."
+    }
+
+    val titleSupportMessage = when(state.titleError) {
+        TitleError.TITLE_FORM_INVALID -> "제목을 입력해주세요"
+        null -> ""
+    }
+
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -32,7 +44,7 @@ fun ModalBody(
             essential = true,
             placeHolder = "태스크 제목을 입력하세요",
             maxLines = 1,
-            supportingText = state.titleError?.message,
+            supportingText = titleSupportMessage,
             state = state.title,
             onValueChange = {
                 state.title = it
@@ -58,7 +70,7 @@ fun ModalBody(
             essential = false,
             placeHolder = "태그를 쉼표로 구분하여 입력하세요 (예: 버그, 긴급)",
             maxLines = 1,
-            supportingText = state.tagError?.message,
+            supportingText = tagSupportMessage,
             state = state.tag,
             onValueChange = {
                 state.tag = it
