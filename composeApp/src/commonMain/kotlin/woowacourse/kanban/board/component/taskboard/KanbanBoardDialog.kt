@@ -9,12 +9,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateForm
+import woowacourse.kanban.board.component.taskmodal.ModalCreateFormState
 
 @Composable
 fun KanbanBoardDialog(
+
     onClickCancel: () -> Unit,
-    onClickConfirm: () -> Unit,
+    onClickConfirm: (KanbanCardForm) -> Unit,
+    modalState: ModalCreateFormState,
 ) {
     Dialog(onDismissRequest = { onClickCancel() }) {
         Card(
@@ -24,8 +28,17 @@ fun KanbanBoardDialog(
             shape = RoundedCornerShape(10.dp),
         ) {
             ModalCreateForm(
-                onClickCancel = TODO(),
-                onClickConfirm = TODO()
+                onClickCancel = { onClickCancel() },
+                onClickConfirm = {
+                    val newTask = KanbanCardForm(
+                        title = modalState.title,
+                        content = modalState.content,
+                        crewName = "다이노",
+                        tags = modalState.tags,
+                    )
+                    onClickConfirm(newTask)
+                },
+                modalState = modalState,
             )
         }
     }
@@ -41,5 +54,6 @@ fun KanbanBoardDialogPreview() {
     KanbanBoardDialog(
         onClickCancel = { },
         onClickConfirm = { },
+        modalState = ModalCreateFormState(),
     )
 }

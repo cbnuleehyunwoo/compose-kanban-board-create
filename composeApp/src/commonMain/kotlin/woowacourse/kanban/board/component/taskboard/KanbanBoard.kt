@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -16,18 +17,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateFormState
 
 @Composable
 fun KanbanBoard(modifier: Modifier = Modifier) {
     var showDialog by remember { mutableStateOf(false) }
-    val state = remember { ModalCreateFormState() }
+    val taskList = remember { mutableStateListOf(listOf<KanbanCardForm>()) }
+    val modalState = remember { ModalCreateFormState() }
     Column(modifier = modifier) {
         Box {
             if (showDialog) {
                 KanbanBoardDialog(
+                    modalState = modalState,
                     onClickCancel = { showDialog = false },
-                    onClickConfirm = {},
+                    onClickConfirm = {
+                        taskList.add(listOf(it))
+                        showDialog = false
+                    },
                 )
             }
         }
