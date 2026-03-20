@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.component.taskcard.KanbanCard
 import woowacourse.kanban.board.component.taskcard.KanbanCardForm
+import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
 @Composable
@@ -75,6 +76,7 @@ fun KanbanCardHolder(
                     vertical = 17.dp,
                     horizontal = 16.dp,
                 ),
+            verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
             items(tasks) { task ->
                 KanbanCard(
@@ -88,7 +90,7 @@ fun KanbanCardHolder(
 @Preview(
     showBackground = true,
     widthDp = 320,
-    heightDp = 800,
+    heightDp = 1000,
 )
 @Composable
 fun KanbanCardHolderPreview() {
@@ -100,24 +102,24 @@ fun KanbanCardHolderPreview() {
     val values = listOf(
         KanbanCardForm(
             title = "LazyColumn 컴포넌트 구현",
-            crewName = "바드",
+            assignee = Assignee(name = "바드"),
             tags = tags,
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
         ),
         KanbanCardForm(
             title = "LazyColumn 컴포넌트 구현",
-            crewName = "바드",
+            assignee = Assignee(name = "바드"),
             tags = tags,
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
         ),
         KanbanCardForm(
             title = "LazyColumn 컴포넌트 구현",
-            crewName = "바드",
+            assignee = Assignee(name = "바드"),
             content = "세로 스크롤 가능한 리스트 컴포넌트를 만들고 성능 최적화를 적용합니다.",
         ),
         KanbanCardForm(
             title = "LazyColumn 컴포넌트 구현",
-            crewName = "바드",
+            assignee = Assignee(name = "바드"),
         ),
     )
 

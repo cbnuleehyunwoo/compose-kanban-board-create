@@ -12,6 +12,7 @@ import androidx.compose.ui.window.Dialog
 import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateFormState
+import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
 @Composable
@@ -19,11 +20,11 @@ fun KanbanBoardDialog(
     onClickCancel: () -> Unit,
     onClickConfirm: (KanbanCardForm) -> Unit,
     modalState: ModalCreateFormState,
+    assignees: List<Assignee>,
 ) {
     Dialog(onDismissRequest = { onClickCancel() }) {
         Card(
-            modifier = Modifier
-                .height(818.dp)
+            modifier = Modifier.height(818.dp)
                 .width(672.dp),
             shape = RoundedCornerShape(10.dp),
         ) {
@@ -34,12 +35,13 @@ fun KanbanBoardDialog(
                         status = TaskState.entries[modalState.status],
                         title = modalState.title,
                         content = modalState.content,
-                        crewName = "다이노",
+                        assignee = assignees[modalState.assignee],
                         tags = modalState.tags,
                     )
                     onClickConfirm(newTask)
                 },
                 modalState = modalState,
+                assignees = assignees,
             )
         }
     }
@@ -52,9 +54,16 @@ fun KanbanBoardDialog(
 )
 @Composable
 fun KanbanBoardDialogPreview() {
+    val assignees = listOf(
+        Assignee("커비"),
+        Assignee("바드"),
+        Assignee("아오"),
+    )
+
     KanbanBoardDialog(
         onClickCancel = { },
         onClickConfirm = { },
         modalState = ModalCreateFormState(),
+        assignees = assignees
     )
 }

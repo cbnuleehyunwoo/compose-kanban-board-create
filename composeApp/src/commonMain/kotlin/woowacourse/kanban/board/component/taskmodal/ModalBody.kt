@@ -133,9 +133,9 @@ fun ModalBody(
                 val newTask = KanbanCardForm(
                     title = modalState.title,
                     content = modalState.content,
-                    crewName = "다이노",
                     tags = modalState.tags,
-                    status = TaskState.entries[modalState.status]
+                    status = TaskState.entries[modalState.status],
+                    assignee = assignees[modalState.assignee],
                 )
                 onClickConfirm(newTask)
             },

@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateFormState
+import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
 @Composable
@@ -27,10 +28,18 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
     val taskList = remember { mutableStateListOf<KanbanCardForm>() }
     val modalState = remember { ModalCreateFormState() }
     val taskGroup = taskList.groupBy { it.status }
+
+    val assignees = listOf(
+        Assignee("커비"),
+        Assignee("바드"),
+        Assignee("아오"),
+    )
+
     Column(modifier = modifier) {
         Box {
             if (showDialog) {
                 KanbanBoardDialog(
+                    assignees = assignees,
                     modalState = modalState,
                     onClickCancel = { showDialog = false },
                     onClickConfirm = {

@@ -15,17 +15,13 @@ import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun ModalCreateForm(
+    assignees: List<Assignee>,
     modifier: Modifier = Modifier,
     onClickCancel: () -> Unit,
     onClickConfirm: (KanbanCardForm) -> Unit,
     modalState: ModalCreateFormState,
 ) {
 
-    val assignees = listOf(
-        Assignee("커비"),
-        Assignee("바드"),
-        Assignee("아오"),
-    )
     Column(
         modifier = modifier.fillMaxWidth(),
     ) {
@@ -38,17 +34,17 @@ fun ModalCreateForm(
 
         ModalBody(
             onClickCancel = { onClickCancel() },
+            assignees = assignees,
             onClickConfirm = {
                 val newTask = KanbanCardForm(
                     title = modalState.title,
                     content = modalState.content,
-                    crewName = "다이노",
                     tags = modalState.tags,
-                    status = TaskState.entries[modalState.status]
+                    status = TaskState.entries[modalState.status],
+                    assignee = assignees[modalState.assignee],
                 )
                 onClickConfirm(newTask)
             },
-            assignees = assignees,
             modalState = modalState,
             modifier = Modifier,
         )
@@ -63,9 +59,17 @@ fun ModalCreateForm(
 @Composable
 private fun ModalCreateFormPreview() {
     val state = remember { ModalCreateFormState() }
+
+    val assignees = listOf(
+        Assignee("커비"),
+        Assignee("바드"),
+        Assignee("아오"),
+    )
+
     ModalCreateForm(
         onClickCancel = {},
         onClickConfirm = {},
         modalState = state,
+        assignees = assignees
     )
 }
