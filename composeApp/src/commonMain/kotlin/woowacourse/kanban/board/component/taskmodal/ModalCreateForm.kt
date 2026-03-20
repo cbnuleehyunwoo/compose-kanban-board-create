@@ -28,7 +28,7 @@ fun ModalCreateForm(
     Column(
         modifier = modifier.fillMaxWidth(),
     ) {
-        ModalHeader()
+        ModalHeader(onClickCancel = { onClickCancel() })
 
         HorizontalDivider(
             thickness = Dp.Hairline,
