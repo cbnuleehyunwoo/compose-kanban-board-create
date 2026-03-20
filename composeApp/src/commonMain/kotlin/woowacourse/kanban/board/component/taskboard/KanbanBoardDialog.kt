@@ -12,10 +12,10 @@ import androidx.compose.ui.window.Dialog
 import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateForm
 import woowacourse.kanban.board.component.taskmodal.ModalCreateFormState
+import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun KanbanBoardDialog(
-
     onClickCancel: () -> Unit,
     onClickConfirm: (KanbanCardForm) -> Unit,
     modalState: ModalCreateFormState,
@@ -31,6 +31,7 @@ fun KanbanBoardDialog(
                 onClickCancel = { onClickCancel() },
                 onClickConfirm = {
                     val newTask = KanbanCardForm(
+                        status = TaskState.entries[modalState.status],
                         title = modalState.title,
                         content = modalState.content,
                         crewName = "다이노",

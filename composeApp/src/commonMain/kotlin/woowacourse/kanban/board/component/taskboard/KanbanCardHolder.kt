@@ -5,7 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -25,9 +24,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import woowacourse.kanban.board.component.taskcard.KanbanCard
 import woowacourse.kanban.board.component.taskcard.KanbanCardForm
+import woowacourse.kanban.board.model.TaskState
 
 @Composable
-fun KanbanCardHolder(modifier: Modifier = Modifier) {
+fun KanbanCardHolder(
+    tasks: List<KanbanCardForm>,
+    modifier: Modifier = Modifier,
+    state: TaskState = TaskState.TODO,
+) {
     Column(modifier = modifier.width(320.dp))
     {
         Row(
@@ -46,7 +50,7 @@ fun KanbanCardHolder(modifier: Modifier = Modifier) {
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = "To Do",
+                text = state.stateName,
                 fontSize = 16.sp,
                 color = Color.White,
             )
@@ -72,6 +76,11 @@ fun KanbanCardHolder(modifier: Modifier = Modifier) {
                     horizontal = 16.dp,
                 ),
             ) {
+            items(tasks) { task ->
+                KanbanCard(
+                    kanbanCardForm = task
+                )
+            }
         }
     }
 }

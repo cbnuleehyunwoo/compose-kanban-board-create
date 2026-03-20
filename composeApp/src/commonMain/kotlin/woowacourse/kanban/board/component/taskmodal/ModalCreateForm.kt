@@ -11,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun ModalCreateForm(
@@ -43,6 +44,7 @@ fun ModalCreateForm(
                     content = modalState.content,
                     crewName = "다이노",
                     tags = modalState.tags,
+                    status = TaskState.entries[modalState.status]
                 )
                 onClickConfirm(newTask)
             },

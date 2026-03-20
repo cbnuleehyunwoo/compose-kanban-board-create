@@ -135,6 +135,7 @@ fun ModalBody(
                     content = modalState.content,
                     crewName = "다이노",
                     tags = modalState.tags,
+                    status = TaskState.entries[modalState.status]
                 )
                 onClickConfirm(newTask)
             },
