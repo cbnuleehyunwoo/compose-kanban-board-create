@@ -11,6 +11,8 @@ class ModalCreateFormState {
     var title by mutableStateOf(value = "")
     var content by mutableStateOf(value = "")
     var tag by mutableStateOf(value = "")
+    val tags: List<String>
+        get() = parseTags()
     var status by mutableIntStateOf(value = 0)
     var assignee by mutableIntStateOf(value = 0)
 

@@ -24,9 +24,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun ModalAction(
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
+    onClickCancel: () -> Unit,
+    onClickConfirm: () -> Unit,
     enabled: Boolean,
+    modifier: Modifier = Modifier,
 ) {
     HorizontalDivider(
         thickness = Dp.Hairline,
@@ -41,7 +42,7 @@ fun ModalAction(
         Button(
             contentPadding = PaddingValues(all = 0.dp),
             shape = RoundedCornerShape(size = 10.dp),
-            onClick = {},
+            onClick = { onClickCancel() },
             colors = ButtonColors(
                 containerColor = Color.White,
                 contentColor = Color.Black,
@@ -66,7 +67,7 @@ fun ModalAction(
             enabled = enabled,
             contentPadding = PaddingValues(all = 0.dp),
             shape = RoundedCornerShape(size = 10.dp),
-            onClick = onClick,
+            onClick = { onClickConfirm() },
             colors = ButtonColors(
                 containerColor = Color.Blue,
                 contentColor = Color.White,
@@ -90,8 +91,9 @@ fun ModalAction(
 private fun ModalActionPreview() {
     Box(modifier = Modifier.padding(all = 10.dp)) {
         ModalAction(
-            onClick = {},
             enabled = false,
+            onClickCancel = {},
+            onClickConfirm = {},
         )
     }
 }

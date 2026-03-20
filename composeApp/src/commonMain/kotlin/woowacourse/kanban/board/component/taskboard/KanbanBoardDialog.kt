@@ -23,7 +23,10 @@ fun KanbanBoardDialog(
                 .width(672.dp),
             shape = RoundedCornerShape(10.dp),
         ) {
-            ModalCreateForm(onClick = { onClickCancel() })
+            ModalCreateForm(
+                onClickCancel = TODO(),
+                onClickConfirm = TODO()
+            )
         }
     }
 }

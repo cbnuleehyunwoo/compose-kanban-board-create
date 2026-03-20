@@ -12,7 +12,11 @@ import androidx.compose.ui.unit.Dp
 import woowacourse.kanban.board.model.Assignee
 
 @Composable
-fun ModalCreateForm(modifier: Modifier = Modifier) {
+fun ModalCreateForm(
+    onClickCancel: () -> Unit,
+    onClickConfirm: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val state = remember { ModalCreateFormState() }
 
     val assignees = listOf(
@@ -35,6 +39,8 @@ fun ModalCreateForm(modifier: Modifier = Modifier) {
             assignees = assignees,
             state = state,
             modifier = Modifier,
+            onClickCancel = TODO(),
+            onClickConfirm = TODO(),
         )
     }
 }
@@ -46,5 +52,8 @@ fun ModalCreateForm(modifier: Modifier = Modifier) {
 )
 @Composable
 private fun ModalCreateFormPreview() {
-    ModalCreateForm()
+    ModalCreateForm(
+        onClickCancel = {},
+        onClickConfirm = {},
+    )
 }

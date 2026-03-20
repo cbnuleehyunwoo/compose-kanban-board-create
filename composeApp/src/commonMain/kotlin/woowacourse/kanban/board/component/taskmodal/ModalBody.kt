@@ -21,6 +21,8 @@ fun ModalBody(
     state: ModalCreateFormState,
     assignees: List<Assignee>,
     modifier: Modifier = Modifier,
+    onClickCancel: () -> Unit,
+    onClickConfirm: () -> Unit
 ) {
     val tagSupportMessage = when(state.tagError) {
         TagError.TAG_FORM_INVALID -> "태그 형식이 올바르지 않습니다."
@@ -125,7 +127,8 @@ fun ModalBody(
 
         ModalAction(
             enabled = state.isValidContents,
-            onClick = {},
+            onClickCancel = TODO(),
+            onClickConfirm = TODO(),
         )
     }
 }
@@ -148,5 +151,7 @@ private fun ModalBodyPreview() {
     ModalBody(
         state = state,
         assignees = assignees,
+        onClickCancel = TODO(),
+        onClickConfirm = TODO(),
     )
 }
