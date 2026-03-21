@@ -59,14 +59,19 @@ private fun ModalBodySelectorOptionPreview() {
     ModalBodySelector(
         title = "상태",
         essential = true,
-        items = TaskState.getStateNames(),
+        items = TaskState.entries.map { state ->
+            when(state) {
+                TaskState.TODO -> "To Do"
+                TaskState.IN_PROGRESS -> "In Progress"
+                TaskState.DONE -> "Done"
+            }
+        },
         content = @Composable { name, id ->
             ModalOptionButton(
                 isSelected = selectedId == id,
                 selectedContainerColor = Color(0xFFEFF6FF),
                 selectedBorderColor = Color(0xFF1447E6),
                 onClick = {
-                    selectedId = id
                 },
                 content = {
                     ModalOptionStatus(

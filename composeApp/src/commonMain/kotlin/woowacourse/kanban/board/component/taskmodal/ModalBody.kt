@@ -18,7 +18,7 @@ import woowacourse.kanban.board.model.TaskState
 import woowacourse.kanban.board.model.TitleError
 
 @Composable
-fun ModalBody(
+fun  ModalBody(
     modalState: ModalCreateFormState,
     assignees: List<Assignee>,
     modifier: Modifier = Modifier,
@@ -85,7 +85,13 @@ fun ModalBody(
         ModalBodySelector(
             title = "상태",
             essential = true,
-            items = TaskState.getStateNames(),
+            items = TaskState.entries.map { state ->
+                when(state) {
+                    TaskState.TODO -> "To Do"
+                    TaskState.IN_PROGRESS -> "In Progress"
+                    TaskState.DONE -> "Done"
+                }
+            },
             content = @Composable { name, id ->
                 ModalOptionButton(
                     onClick = { modalState.status = id },

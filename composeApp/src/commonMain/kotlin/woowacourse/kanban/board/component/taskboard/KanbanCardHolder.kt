@@ -32,10 +32,14 @@ import woowacourse.kanban.board.model.TaskState
 fun KanbanCardHolder(
     tasks: List<KanbanCardForm>,
     modifier: Modifier = Modifier,
-    state: TaskState = TaskState.TODO,
+    state: TaskState,
     holderColor: holderColor,
 ) {
-
+    val stateName = when(state) {
+        TaskState.TODO -> "To Do"
+        TaskState.IN_PROGRESS -> "In Progress"
+        TaskState.DONE -> "Done"
+    }
     Column(modifier = modifier.width(320.dp))
     {
         Row(
@@ -54,7 +58,7 @@ fun KanbanCardHolder(
             verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
-                text = state.stateName,
+                text = stateName,
                 fontSize = 16.sp,
                 color = Color.White,
             )
@@ -133,5 +137,6 @@ fun KanbanCardHolderPreview() {
             contentContainer = Color(0xFFEFF6FF),
             contentBorder = Color(0xFFBEDBFF),
         ),
+        state = TaskState.TODO,
     )
 }
