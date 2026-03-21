@@ -27,12 +27,15 @@ import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
+
 @Composable
 fun KanbanCardHolder(
     tasks: List<KanbanCardForm>,
     modifier: Modifier = Modifier,
     state: TaskState = TaskState.TODO,
+    holderColor: holderColor,
 ) {
+
     Column(modifier = modifier.width(320.dp))
     {
         Row(
@@ -45,7 +48,7 @@ fun KanbanCardHolder(
                         topEnd = 10.dp,
                     ),
                 )
-                .background(color = Color(0xFF155DFC))
+                .background(color = holderColor.headerContainer)
                 .padding(horizontal = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically,
@@ -57,7 +60,7 @@ fun KanbanCardHolder(
             )
 
             Text(
-                text = "2",
+                text = tasks.size.toString(),
                 modifier = Modifier
                     .height(24.dp)
                     .clip(shape = RoundedCornerShape(16777200.dp))
@@ -70,17 +73,17 @@ fun KanbanCardHolder(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .background(color = Color(0xFFEFF6FF))
-                .border(1.dp, Color(0xFFBEDBFF))
+                .background(color = holderColor.contentContainer)
+                .border(1.dp, holderColor.contentBorder)
                 .padding(
                     vertical = 17.dp,
                     horizontal = 16.dp,
                 ),
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
             items(tasks) { task ->
                 KanbanCard(
-                    kanbanCardForm = task
+                    kanbanCardForm = task,
                 )
             }
         }
@@ -123,7 +126,12 @@ fun KanbanCardHolderPreview() {
         ),
     )
 
-   KanbanCardHolder(
-       tasks = values
-   )
+    KanbanCardHolder(
+        tasks = values,
+        holderColor = holderColor(
+            headerContainer = Color(0xFF155DFC),
+            contentContainer = Color(0xFFEFF6FF),
+            contentBorder = Color(0xFFBEDBFF),
+        ),
+    )
 }

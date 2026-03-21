@@ -67,14 +67,40 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
         ) {
             TaskState.entries.forEach { state ->
                 val stateTask = taskGroup[state] ?: emptyList()
+                val holderColor = when (state) {
+                    TaskState.IN_PROGRESS -> holderColor(
+                        headerContainer = Color(0xFFE17100),
+                        contentContainer = Color(0xFFFFFBEB),
+                        contentBorder = Color(0xFFFEE685),
+                    )
+
+                    TaskState.TODO -> holderColor(
+                        headerContainer = Color(0xFF155DFC),
+                        contentContainer = Color(0xFFEFF6FF),
+                        contentBorder = Color(0xFFBEDBFF),
+                    )
+
+                    TaskState.DONE -> holderColor(
+                        headerContainer = Color(0xFF00A63E),
+                        contentContainer = Color(0xFFF0FDF4),
+                        contentBorder = Color(0xFFB9F8CF),
+                    )
+                }
                 KanbanCardHolder(
-                    state = state,
                     tasks = stateTask,
+                    state = state,
+                    holderColor = holderColor,
                 )
             }
         }
     }
 }
+
+data class holderColor(
+    val headerContainer: Color,
+    val contentContainer: Color,
+    val contentBorder: Color,
+)
 
 @Preview(
     showBackground = true,
