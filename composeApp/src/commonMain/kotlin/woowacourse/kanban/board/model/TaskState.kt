@@ -1,8 +1,8 @@
 package woowacourse.kanban.board.model
 
 enum class TaskState(val stateName: String) {
-    IN_PROGRESS("In Progress"),
     TODO("To Do"),
+    IN_PROGRESS("In Progress"),
     DONE("Done");
 
     companion object {
