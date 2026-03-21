@@ -67,7 +67,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
             }
             KanbanTaskBoardHeader(
                 onClick = { showDialog = !showDialog },
-                completion = 0.5f,
+                taskList = taskList,
                 modifier = modifier
                     .border(
                         width = 1.dp,

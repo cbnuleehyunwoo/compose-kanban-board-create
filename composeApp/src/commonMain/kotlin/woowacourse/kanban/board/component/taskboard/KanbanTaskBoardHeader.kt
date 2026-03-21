@@ -26,13 +26,19 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import woowacourse.kanban.board.component.taskcard.KanbanCardForm
+import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun KanbanTaskBoardHeader(
-    completion: Float,
+    taskList: List<KanbanCardForm>,
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
 ) {
+    val doneTaskCount = taskList.count { it.status == TaskState.DONE }
+    val completion = doneTaskCount.toFloat() / taskList.size
+
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
@@ -76,9 +82,9 @@ fun KanbanTaskBoardHeader(
             }
 
             Text(
-                text = "완료율: ${(completion * 100).toInt()}%",
+                text = "완료율: ${(completion * 100).toInt()}% ($doneTaskCount/${taskList.size})",
                 fontSize = 14.sp,
-                color = Color.LightGray,
+                color = Color.Gray,
             )
 
         }
@@ -86,7 +92,7 @@ fun KanbanTaskBoardHeader(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(8.dp),
-            progress = { 0.5f },
+            progress = { completion },
             color = Color(0xFF4F39F6),
             trackColor = Color.White,
         )
@@ -101,7 +107,29 @@ fun KanbanTaskBoardHeader(
 @Composable
 fun KanbanTaskBoardHeaderPreview() {
     KanbanTaskBoardHeader(
-        completion = 0.5f,
         onClick = {},
+        taskList = listOf(
+            KanbanCardForm(
+                title = "투두",
+                assignee = Assignee("커비"),
+                tags = listOf("투두", "투두"),
+                content = "투두 내용",
+                status = TaskState.TODO,
+            ),
+            KanbanCardForm(
+                title = "완료",
+                assignee = Assignee("커비"),
+                tags = listOf("완료", "완료"),
+                content = "완료 내용",
+                status = TaskState.DONE,
+            ),
+            KanbanCardForm(
+                title = "인 프로그레스",
+                assignee = Assignee("커비"),
+                tags = listOf("인프", "인프"),
+                content = "인 프로그레스 내용",
+                status = TaskState.IN_PROGRESS,
+            ),
+        ) ,
     )
 }
