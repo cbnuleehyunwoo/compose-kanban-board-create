@@ -24,7 +24,6 @@ class ModalCreateFormState {
     var tagError: TagError? by mutableStateOf(null)
 
 
-
     fun updateTitleValidation() {
         titleError = if (title.isNotBlank()) null
         else TitleError.TITLE_FORM_INVALID
@@ -35,8 +34,8 @@ class ModalCreateFormState {
         tagError = when {
             tag.isEmpty() -> null
             tags.any { it.isBlank() } -> TagError.TAG_FORM_INVALID
-            tags.size > 5 || tags.any {it.length > 5} -> TagError.TAG_OVER_N
-            else-> null
+            tags.size > 5 || tags.any { it.length > 5 } -> TagError.TAG_OVER_N
+            else -> null
         }
     }
 

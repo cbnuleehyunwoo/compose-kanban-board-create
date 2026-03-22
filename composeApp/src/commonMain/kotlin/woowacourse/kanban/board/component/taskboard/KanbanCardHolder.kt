@@ -31,11 +31,11 @@ import woowacourse.kanban.board.model.TaskState
 @Composable
 fun KanbanCardHolder(
     tasks: List<KanbanCardForm>,
-    modifier: Modifier = Modifier,
     state: TaskState,
     holderColor: HolderColor,
+    modifier: Modifier = Modifier,
 ) {
-    val stateName = when(state) {
+    val stateName = when (state) {
         TaskState.TODO -> "To Do"
         TaskState.IN_PROGRESS -> "In Progress"
         TaskState.DONE -> "Done"
@@ -43,6 +43,8 @@ fun KanbanCardHolder(
     Column(modifier = modifier.width(320.dp))
     {
         Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
                 .width(320.dp)
                 .height(48.dp)
@@ -54,8 +56,6 @@ fun KanbanCardHolder(
                 )
                 .background(color = holderColor.headerContainer)
                 .padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = stateName,
@@ -75,6 +75,7 @@ fun KanbanCardHolder(
         }
 
         LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(12.dp),
             modifier = Modifier
                 .fillMaxSize()
                 .background(color = holderColor.contentContainer)
@@ -83,7 +84,6 @@ fun KanbanCardHolder(
                     vertical = 17.dp,
                     horizontal = 16.dp,
                 ),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             items(tasks) { task ->
                 KanbanCard(

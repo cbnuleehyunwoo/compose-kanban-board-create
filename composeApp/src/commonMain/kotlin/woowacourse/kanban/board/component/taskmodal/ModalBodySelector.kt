@@ -60,7 +60,7 @@ private fun ModalBodySelectorOptionPreview() {
         title = "상태",
         essential = true,
         items = TaskState.entries.map { state ->
-            when(state) {
+            when (state) {
                 TaskState.TODO -> "To Do"
                 TaskState.IN_PROGRESS -> "In Progress"
                 TaskState.DONE -> "Done"

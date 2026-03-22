@@ -58,7 +58,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                             scope.launch {
                                 snackbarState.showSnackbar(
                                     message = "${it.title} 태스크가 생성되었습니다.",
-                                    duration = SnackbarDuration.Short
+                                    duration = SnackbarDuration.Short,
                                 )
                             }
                         },
@@ -76,10 +76,10 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                     .padding(24.dp),
             )
             Row(
+                horizontalArrangement = Arrangement.spacedBy(16.dp),
                 modifier = modifier
                     .background(color = Color(0xFFF9FAFB))
                     .padding(24.dp),
-                horizontalArrangement = Arrangement.spacedBy(16.dp),
             ) {
                 TaskState.entries.forEach { state ->
                     val stateTask = taskGroup[state] ?: emptyList()
@@ -112,7 +112,8 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
         }
         SnackbarHost(
             hostState = snackbarState,
-            modifier = Modifier.align(Alignment.BottomCenter).padding(bottom = 16.dp)
+            modifier = Modifier.align(Alignment.BottomCenter)
+                .padding(bottom = 16.dp),
         )
     }
 }

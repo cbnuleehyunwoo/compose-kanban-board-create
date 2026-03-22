@@ -18,12 +18,12 @@ import woowacourse.kanban.board.model.TaskState
 import woowacourse.kanban.board.model.TitleError
 
 @Composable
-fun  ModalBody(
+fun ModalBody(
     modalState: ModalCreateFormState,
     assignees: List<Assignee>,
-    modifier: Modifier = Modifier,
     onClickCancel: () -> Unit,
     onClickConfirm: (KanbanCardForm) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val tagSupportMessage = when (modalState.tagError) {
         TagError.TAG_FORM_INVALID -> "태그 형식이 올바르지 않습니다."
@@ -37,10 +37,10 @@ fun  ModalBody(
     }
 
     Column(
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         modifier = modifier
             .fillMaxWidth()
             .padding(all = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         ModalBodyInput(
             title = "제목",
@@ -86,7 +86,7 @@ fun  ModalBody(
             title = "상태",
             essential = true,
             items = TaskState.entries.map { state ->
-                when(state) {
+                when (state) {
                     TaskState.TODO -> "To Do"
                     TaskState.IN_PROGRESS -> "In Progress"
                     TaskState.DONE -> "Done"
@@ -98,13 +98,13 @@ fun  ModalBody(
                     isSelected = modalState.status == id,
                     selectedContainerColor = Color(0xFFEFF6FF),
                     selectedBorderColor = Color(0xFF1447E6),
-                    modifier = Modifier.height(52.dp),
                     content = {
                         ModalOptionStatus(
                             text = name,
                             modifier = Modifier,
                         )
                     },
+                    modifier = Modifier.height(52.dp),
                 )
             },
         )
@@ -118,7 +118,6 @@ fun  ModalBody(
                     isSelected = modalState.assignee == id,
                     selectedBorderColor = Color(0xFF615FFF),
                     selectedContainerColor = Color(0xFFEFF6FF),
-                    modifier = Modifier.height(68.dp),
                     onClick = {
                         modalState.assignee = id
                     },
@@ -128,6 +127,7 @@ fun  ModalBody(
                             modifier = Modifier,
                         )
                     },
+                    modifier = Modifier.height(68.dp),
                 )
             },
         )
@@ -168,5 +168,6 @@ private fun ModalBodyPreview() {
         modalState = state,
         assignees = assignees,
         onClickCancel = {},
-    ) {}
+        onClickConfirm = {},
+    )
 }

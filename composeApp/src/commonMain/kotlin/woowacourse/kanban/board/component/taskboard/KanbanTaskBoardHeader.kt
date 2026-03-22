@@ -15,10 +15,6 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,8 +29,8 @@ import woowacourse.kanban.board.model.TaskState
 @Composable
 fun KanbanTaskBoardHeader(
     taskList: List<KanbanCardForm>,
-    modifier: Modifier = Modifier,
     onClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val doneTaskCount = taskList.count { it.status == TaskState.DONE }
     val completion = doneTaskCount.toFloat() / taskList.size
@@ -51,9 +47,9 @@ fun KanbanTaskBoardHeader(
             modifier = Modifier.fillMaxWidth(),
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth(),
             ) {
                 Text(
                     text = "Compose Desktop 칸반 보드",
@@ -89,12 +85,12 @@ fun KanbanTaskBoardHeader(
 
         }
         LinearProgressIndicator(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(8.dp),
             progress = { completion },
             color = Color(0xFF4F39F6),
             trackColor = Color.White,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(8.dp),
         )
     }
 }
@@ -130,6 +126,6 @@ fun KanbanTaskBoardHeaderPreview() {
                 content = "인 프로그레스 내용",
                 status = TaskState.IN_PROGRESS,
             ),
-        ) ,
+        ),
     )
 }

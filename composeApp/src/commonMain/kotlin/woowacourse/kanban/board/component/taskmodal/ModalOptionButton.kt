@@ -93,8 +93,8 @@ private fun ModalOptionAssigneePreview() {
 
 @Composable
 fun ModalOptionStatus(
-    modifier: Modifier = Modifier,
     text: String,
+    modifier: Modifier = Modifier,
 ) {
     Text(
         text = text,
@@ -104,8 +104,8 @@ fun ModalOptionStatus(
 
 @Composable
 fun ModalOptionAssignee(
-    modifier: Modifier = Modifier,
     name: String,
+    modifier: Modifier = Modifier,
 ) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(12.dp),

@@ -64,6 +64,6 @@ fun KanbanBoardDialogPreview() {
         onClickCancel = { },
         onClickConfirm = { },
         modalState = ModalCreateFormState(),
-        assignees = assignees
+        assignees = assignees,
     )
 }

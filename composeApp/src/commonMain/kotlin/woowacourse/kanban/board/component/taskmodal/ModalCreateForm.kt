@@ -70,6 +70,6 @@ private fun ModalCreateFormPreview() {
         onClickCancel = {},
         onClickConfirm = {},
         modalState = state,
-        assignees = assignees
+        assignees = assignees,
     )
 }
