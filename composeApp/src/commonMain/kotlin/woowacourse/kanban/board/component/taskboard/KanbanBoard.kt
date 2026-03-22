@@ -65,7 +65,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
             KanbanTaskBoardHeader(
                 onClick = { showDialog = !showDialog },
                 taskList = taskList,
-                modifier = modifier
+                modifier = Modifier
                     .border(
                         width = 1.dp,
                         color = Color.LightGray,
@@ -74,7 +74,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
             )
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
-                modifier = modifier
+                modifier = Modifier
                     .background(color = Color(0xFFF9FAFB))
                     .padding(24.dp),
             ) {
