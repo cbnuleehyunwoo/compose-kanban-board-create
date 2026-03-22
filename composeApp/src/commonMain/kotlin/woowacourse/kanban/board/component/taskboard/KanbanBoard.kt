@@ -115,11 +115,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
     }
 }
 
-data class HolderColor(
-    val headerContainer: Color,
-    val contentContainer: Color,
-    val contentBorder: Color,
-)
+
 
 @Preview(
     showBackground = true,
