@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -74,8 +75,7 @@ private fun ModalBodySelectorOptionPreview() {
                 onClick = {
                 },
                 content = {
-                    ModalOptionStatus(
-                        modifier = Modifier,
+                    Text(
                         text = name,
                     )
                 },

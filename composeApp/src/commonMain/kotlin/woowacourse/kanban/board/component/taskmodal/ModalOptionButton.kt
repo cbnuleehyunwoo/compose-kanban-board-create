@@ -62,8 +62,7 @@ private fun ModalOptionButtonPreview() {
     ModalOptionButton(
         onClick = {},
         content = {
-            ModalOptionStatus(
-                modifier = Modifier,
+            Text(
                 text = "In Progress",
             )
         },
@@ -88,17 +87,6 @@ private fun ModalOptionAssigneePreview() {
                 modifier = Modifier,
             )
         },
-    )
-}
-
-@Composable
-fun ModalOptionStatus(
-    text: String,
-    modifier: Modifier = Modifier,
-) {
-    Text(
-        text = text,
-        modifier = modifier,
     )
 }
 

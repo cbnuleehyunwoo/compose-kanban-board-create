@@ -1,10 +1,12 @@
 package woowacourse.kanban.board.component.taskmodal
 
+import androidx.compose.foundation.content.MediaType.Companion.Text
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -99,9 +101,8 @@ fun ModalBody(
                     selectedContainerColor = Color(0xFFEFF6FF),
                     selectedBorderColor = Color(0xFF1447E6),
                     content = {
-                        ModalOptionStatus(
+                        Text(
                             text = name,
-                            modifier = Modifier,
                         )
                     },
                     modifier = Modifier.height(52.dp),
