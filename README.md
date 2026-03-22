@@ -7,16 +7,15 @@
 
 1. ModalCreateFormStateTest.kt의 테스트 코드를 수정합니다. 
     - 피드백을 반영하면서, 프로덕션 코드의 API가 바뀌었는데 이를 반영하도록 수정합니다. 
-    - commit: 
+    - commit: a4452db
 2. model/FormError의 FormError Enum 클래스의 가독성을 좀 더 명확히 합니다.
     - 현재는 Error 메시지와 SUCCESS 타입을 들고 있는데, 이를 개선합니다. 
-    - commit:
-3. named Argument의 순서를 좀 더 가독성 좋게 조정합니다. 
-    - commit:
+    - commit: 9a02ed1, 7f450e4
+3. named Argument의 순서를 좀 더 가독성 좋게 조정합니다.
+    - 함수 호출부에서 modifier를 밑으로, 그다음으로 길이가 긴 Argument를 배치합니다.
+    - commit: c4c661c
 4. 과도한 컴포넌트 분할을 탐색하고, 존재한다면 수정합니다. 
-    - commit:
-5. 테스트 코드의 함수 호출이 리팩토링된 코드에 맞지 않는 문제를 수정합니다.
-    - commit:
+    - commit: 2f280e2
 
 ## II. UI 요구사항
 ### 1. 보드 헤더
