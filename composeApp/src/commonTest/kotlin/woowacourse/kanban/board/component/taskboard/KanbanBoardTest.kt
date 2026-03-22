@@ -36,7 +36,7 @@ class KanbanBoardTest {
             KanbanBoard()
         }
 
-        //then
+        // then
         onAllNodesWithText("0").assertCountEquals(3)
 
         onNodeWithText("새 태스크 생성").performClick()

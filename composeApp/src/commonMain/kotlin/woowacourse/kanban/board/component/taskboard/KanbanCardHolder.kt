@@ -27,7 +27,6 @@ import woowacourse.kanban.board.component.taskcard.KanbanCardForm
 import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
-
 @Composable
 fun KanbanCardHolder(
     tasks: List<KanbanCardForm>,

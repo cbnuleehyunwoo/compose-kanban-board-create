@@ -23,7 +23,6 @@ class ModalCreateFormState {
     var titleError: TitleError? by mutableStateOf(TitleError.TITLE_FORM_INVALID)
     var tagError: TagError? by mutableStateOf(null)
 
-
     fun updateTitleValidation() {
         titleError = if (title.isNotBlank()) null
         else TitleError.TITLE_FORM_INVALID
