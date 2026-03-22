@@ -33,7 +33,7 @@ fun KanbanCardHolder(
     tasks: List<KanbanCardForm>,
     modifier: Modifier = Modifier,
     state: TaskState,
-    holderColor: holderColor,
+    holderColor: HolderColor,
 ) {
     val stateName = when(state) {
         TaskState.TODO -> "To Do"
@@ -132,7 +132,7 @@ fun KanbanCardHolderPreview() {
 
     KanbanCardHolder(
         tasks = values,
-        holderColor = holderColor(
+        holderColor = HolderColor(
             headerContainer = Color(0xFF155DFC),
             contentContainer = Color(0xFFEFF6FF),
             contentBorder = Color(0xFFBEDBFF),

@@ -84,19 +84,19 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                 TaskState.entries.forEach { state ->
                     val stateTask = taskGroup[state] ?: emptyList()
                     val holderColor = when (state) {
-                        TaskState.IN_PROGRESS -> holderColor(
+                        TaskState.IN_PROGRESS -> HolderColor(
                             headerContainer = Color(0xFFE17100),
                             contentContainer = Color(0xFFFFFBEB),
                             contentBorder = Color(0xFFFEE685),
                         )
 
-                        TaskState.TODO -> holderColor(
+                        TaskState.TODO -> HolderColor(
                             headerContainer = Color(0xFF155DFC),
                             contentContainer = Color(0xFFEFF6FF),
                             contentBorder = Color(0xFFBEDBFF),
                         )
 
-                        TaskState.DONE -> holderColor(
+                        TaskState.DONE -> HolderColor(
                             headerContainer = Color(0xFF00A63E),
                             contentContainer = Color(0xFFF0FDF4),
                             contentBorder = Color(0xFFB9F8CF),
@@ -117,7 +117,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
     }
 }
 
-data class holderColor(
+data class HolderColor(
     val headerContainer: Color,
     val contentContainer: Color,
     val contentBorder: Color,
