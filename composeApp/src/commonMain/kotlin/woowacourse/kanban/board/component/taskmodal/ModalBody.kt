@@ -52,7 +52,6 @@ fun ModalBody(
             supportingText = titleSupportMessage,
             onValueChange = {
                 modalState.title = it
-                modalState.updateTitleValidation()
             },
             isValid = modalState.titleError == null,
             state = modalState.title,
@@ -80,7 +79,6 @@ fun ModalBody(
             isValid = modalState.tagError == null,
             onValueChange = {
                 modalState.tag = it
-                modalState.updateTagValidation()
             },
         )
 

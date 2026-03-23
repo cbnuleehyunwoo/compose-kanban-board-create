@@ -20,17 +20,18 @@ class ModalCreateFormState {
         get() = (titleError == null) &&
                 (tagError == null)
 
-    var titleError: TitleError? by mutableStateOf(TitleError.TITLE_FORM_INVALID)
-    var tagError: TagError? by mutableStateOf(null)
-
-    fun updateTitleValidation() {
-        titleError = if (title.isNotBlank()) null
+    val titleError: TitleError?
+        get() = updateTitleValidation()
+    val tagError: TagError?
+        get() = updateTagValidation()
+    private fun updateTitleValidation(): TitleError? {
+        return if (title.isNotBlank()) null
         else TitleError.TITLE_FORM_INVALID
     }
 
-    fun updateTagValidation() {
+    private fun updateTagValidation(): TagError? {
         val tags = parseTags()
-        tagError = when {
+        return when {
             tag.isEmpty() -> null
             tags.any { it.isBlank() } -> TagError.TAG_FORM_INVALID
             tags.size > 5 || tags.any { it.length > 5 } -> TagError.TAG_OVER_N
