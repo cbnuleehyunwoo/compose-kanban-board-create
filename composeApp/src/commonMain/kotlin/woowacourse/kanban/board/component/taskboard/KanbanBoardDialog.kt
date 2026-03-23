@@ -21,10 +21,11 @@ fun KanbanBoardDialog(
     onClickConfirm: (KanbanCardForm) -> Unit,
     modalState: ModalCreateFormState,
     assignees: List<Assignee>,
+    modifier: Modifier = Modifier
 ) {
     Dialog(onDismissRequest = { onClickCancel() }) {
         Card(
-            modifier = Modifier.height(818.dp)
+            modifier = modifier.height(818.dp)
                 .width(672.dp),
             shape = RoundedCornerShape(10.dp),
         ) {
