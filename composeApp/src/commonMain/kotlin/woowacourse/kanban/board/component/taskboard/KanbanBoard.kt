@@ -42,24 +42,24 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
         Assignee("아오"),
     )
     Box(modifier = modifier) {
+        if (state.showDialog) {
+            KanbanBoardDialog(
+                assignees = assignees,
+                modalState = state.modalState,
+                onClickCancel = { state.showDialog = false },
+                onClickConfirm = {
+                    state.addTask(it)
+                    state.showDialog = false
+                    scope.launch {
+                        snackbarState.showSnackbar(
+                            message = "${it.title} 태스크가 생성되었습니다.",
+                            duration = SnackbarDuration.Short,
+                        )
+                    }
+                },
+            )
+        }
         Column(modifier = Modifier) {
-            if (state.showDialog) {
-                KanbanBoardDialog(
-                    assignees = assignees,
-                    modalState = state.modalState,
-                    onClickCancel = { state.showDialog = false },
-                    onClickConfirm = {
-                        state.addTask(it)
-                        state.showDialog = false
-                        scope.launch {
-                            snackbarState.showSnackbar(
-                                message = "${it.title} 태스크가 생성되었습니다.",
-                                duration = SnackbarDuration.Short,
-                            )
-                        }
-                    },
-                )
-            }
             KanbanTaskBoardHeader(
                 onClick = { state.showDialog = state.showDialog.not() },
                 taskList = state.taskList,
@@ -112,7 +112,6 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
         )
     }
 }
-
 
 
 @Preview(
