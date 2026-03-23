@@ -49,7 +49,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                     modalState = state.modalState,
                     onClickCancel = { state.showDialog = false },
                     onClickConfirm = {
-                        state.taskList.add(it)
+                        state.addTask(it)
                         state.showDialog = false
                         scope.launch {
                             snackbarState.showSnackbar(

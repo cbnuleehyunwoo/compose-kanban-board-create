@@ -9,6 +9,9 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
+import woowacourse.kanban.board.component.taskcard.KanbanCardForm
+import woowacourse.kanban.board.model.Assignee
+import woowacourse.kanban.board.model.TaskState
 import kotlin.test.Test
 
 @OptIn(ExperimentalTestApi::class)
@@ -138,5 +141,31 @@ class KanbanBoardTest {
 
         // then
         onNodeWithText("완료율: 0% (0/1)").assertIsDisplayed()
+    }
+
+    @Test
+    fun `태스크 리스트를 전달하면 정확한 완료율과 개수를 표시한다`() = runComposeUiTest {
+        // given
+        val testList = listOf(
+            KanbanCardForm(
+                title = "TODO 테스크",
+                assignee = Assignee("담당자1"),
+                status = TaskState.TODO,
+            ),
+            KanbanCardForm(
+                title = "DONE 테스크",
+                assignee = Assignee("담당자2"),
+                status = TaskState.DONE,
+            )
+        )
+        // when
+        setContent {
+            KanbanTaskBoardHeader(
+                taskList = testList,
+                onClick = {},
+            )
+        }
+        // then
+        onNodeWithText("완료율: 50% (1/2)").assertExists()
     }
 }
