@@ -36,11 +36,13 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
     val snackbarState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    val assignees = listOf(
-        Assignee("커비"),
-        Assignee("바드"),
-        Assignee("아오"),
-    )
+    val assignees = remember {
+        mutableStateListOf(
+            Assignee("커비"),
+            Assignee("바드"),
+            Assignee("아오"),
+        )
+    }
     Box(modifier = modifier) {
         if (state.showDialog) {
             KanbanBoardDialog(
@@ -107,7 +109,8 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
         }
         SnackbarHost(
             hostState = snackbarState,
-            modifier = Modifier.align(Alignment.BottomCenter)
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
                 .padding(bottom = 16.dp),
         )
     }
