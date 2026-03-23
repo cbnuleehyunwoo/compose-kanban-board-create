@@ -33,8 +33,7 @@ fun KanbanTaskBoardHeader(
     modifier: Modifier = Modifier,
 ) {
     val doneTaskCount = taskList.count { it.status == TaskState.DONE }
-    val completion = doneTaskCount.toFloat() / taskList.size
-
+    val completion = (doneTaskCount.toFloat() / taskList.size).takeUnless { it.isNaN() } ?: 0f
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
