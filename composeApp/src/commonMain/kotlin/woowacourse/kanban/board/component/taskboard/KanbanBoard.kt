@@ -30,10 +30,8 @@ import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun KanbanBoard(modifier: Modifier = Modifier) {
-    var showDialog by remember { mutableStateOf(false) }
-    val taskList = remember { mutableStateListOf<KanbanCardForm>() }
-    val modalState = remember { ModalCreateFormState() }
-    val taskGroup = taskList.groupBy { it.status }
+
+    val state = remember { KanbanBoardState() }
 
     val snackbarState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
@@ -45,14 +43,14 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
     )
     Box(modifier = modifier) {
         Column(modifier = Modifier) {
-            if (showDialog) {
+            if (state.showDialog) {
                 KanbanBoardDialog(
                     assignees = assignees,
-                    modalState = modalState,
-                    onClickCancel = { showDialog = false },
+                    modalState = state.modalState,
+                    onClickCancel = { state.showDialog = false },
                     onClickConfirm = {
-                        taskList.add(it)
-                        showDialog = false
+                        state.taskList.add(it)
+                        state.showDialog = false
                         scope.launch {
                             snackbarState.showSnackbar(
                                 message = "${it.title} 태스크가 생성되었습니다.",
@@ -63,8 +61,8 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                 )
             }
             KanbanTaskBoardHeader(
-                onClick = { showDialog = !showDialog },
-                taskList = taskList,
+                onClick = { state.showDialog = state.showDialog.not() },
+                taskList = state.taskList,
                 modifier = Modifier
                     .border(
                         width = 1.dp,
@@ -78,9 +76,9 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                     .background(color = Color(0xFFF9FAFB))
                     .padding(24.dp),
             ) {
-                TaskState.entries.forEach { state ->
-                    val stateTask = taskGroup[state] ?: emptyList()
-                    val holderColor = when (state) {
+                TaskState.entries.forEach { taskState ->
+                    val stateTask = state.taskGroup[taskState] ?: emptyList()
+                    val holderColor = when (taskState) {
                         TaskState.IN_PROGRESS -> HolderColor(
                             headerContainer = Color(0xFFE17100),
                             contentContainer = Color(0xFFFFFBEB),
@@ -101,7 +99,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                     }
                     KanbanCardHolder(
                         tasks = stateTask,
-                        state = state,
+                        state = taskState,
                         holderColor = holderColor,
                     )
                 }
