@@ -1,11 +1,20 @@
 package woowacourse.kanban.board.component.taskboard
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertAny
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasAnyAncestor
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasContentDescription
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.isSelectable
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onChild
+import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
@@ -45,7 +54,7 @@ class KanbanBoardTest {
         onNodeWithText("새 태스크 생성").performClick()
         onNodeWithText("태스크 제목을 입력하세요").performTextInput("To Do 태스크")
         onNodeWithText("생성").performClick()
-        
+
         onNodeWithText("1").assertIsDisplayed()
         onAllNodesWithText("0").assertCountEquals(2)
     }
@@ -156,7 +165,7 @@ class KanbanBoardTest {
                 title = "DONE 테스크",
                 assignee = Assignee("담당자2"),
                 status = TaskState.DONE,
-            )
+            ),
         )
         // when
         setContent {
@@ -168,4 +177,38 @@ class KanbanBoardTest {
         // then
         onNodeWithText("완료율: 50% (1/2)").assertExists()
     }
+
+    @Test
+    fun `DONE이 3개 TODO가 2개인 보드를 검증한다 `() = runComposeUiTest {
+        // given
+        setContent {
+            KanbanBoard()
+        }
+        repeat(2) {
+            onNodeWithText("새 태스크 생성").performClick()
+            onNodeWithText("태스크 제목을 입력하세요").performTextInput("투두 태스크 제목")
+            // 태스크 상태 디폴트: TODO
+            onNodeWithText("생성").performClick()
+        }
+
+        repeat(3) {
+            onNodeWithText("새 태스크 생성").performClick()
+            onNodeWithText("태스크 제목을 입력하세요").performTextInput("던 태스크 제목")
+            onNode (hasText("Done") and hasClickAction()).performClick()
+            onNodeWithText("생성").performClick()
+        }
+
+        // then
+        onNodeWithText("To Do")
+            .onParent()
+            .onChildren()
+            .assertAny(hasText("2"))
+
+        onNodeWithText("Done")
+            .onParent()
+            .onChildren()
+            .assertAny(hasText("3"))
+    }
 }
+
+
