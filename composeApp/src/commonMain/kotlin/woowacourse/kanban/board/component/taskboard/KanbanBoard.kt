@@ -11,20 +11,15 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import woowacourse.kanban.board.component.taskcard.KanbanCardForm
-import woowacourse.kanban.board.component.taskmodal.ModalCreateFormState
 import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
@@ -58,6 +53,7 @@ fun KanbanBoard(modifier: Modifier = Modifier) {
                             duration = SnackbarDuration.Short,
                         )
                     }
+                    state.modalState.clear()
                 },
             )
         }
