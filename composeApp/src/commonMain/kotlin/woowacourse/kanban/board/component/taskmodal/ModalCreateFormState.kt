@@ -24,12 +24,12 @@ class ModalCreateFormState {
         get() = updateTitleValidation()
     val tagError: TagError?
         get() = updateTagValidation()
-    fun updateTitleValidation(): TitleError? {
+    private fun updateTitleValidation(): TitleError? {
         return if (title.isNotBlank()) null
         else TitleError.TITLE_FORM_INVALID
     }
 
-    fun updateTagValidation(): TagError? {
+    private fun updateTagValidation(): TagError? {
         val tags = parseTags()
         return when {
             tag.isEmpty() -> null
