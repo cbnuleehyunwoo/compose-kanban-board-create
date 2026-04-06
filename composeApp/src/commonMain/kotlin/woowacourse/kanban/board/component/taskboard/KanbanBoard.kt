@@ -24,9 +24,18 @@ import woowacourse.kanban.board.model.Assignee
 import woowacourse.kanban.board.model.TaskState
 
 @Composable
-fun KanbanBoard(modifier: Modifier = Modifier) {
+fun KanbanBoard() {
+    KanbanBoardContent(
+        state = KanbanBoardState(),
+        modifier = Modifier
+    )
+}
 
-    val state = remember { KanbanBoardState() }
+@Composable
+fun KanbanBoardContent(
+    state: KanbanBoardState,
+    modifier: Modifier = Modifier,
+) {
 
     val snackbarState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()

@@ -179,23 +179,30 @@ class KanbanBoardTest {
     }
 
     @Test
-    fun `DONE이 3개 TODO가 2개인 보드를 검증한다 `() = runComposeUiTest {
+    fun `보드로 주입한 태스크들의 상태가 주입과 동일하게 표시된다`() = runComposeUiTest {
         // given
+        val todoTasks = List(2) {
+            KanbanCardForm(
+                title = "투두제목",
+                status = TaskState.TODO,
+                tags = listOf("태그"),
+                content = "내용",
+                assignee = Assignee("다이노"),
+            )
+        }
+        val doneTasks = List(3) {
+            KanbanCardForm(
+                title = "던 제목",
+                status = TaskState.DONE,
+                tags = listOf("태그"),
+                content = "내용",
+                assignee = Assignee("다이노"),
+            )
+        }
         setContent {
-            KanbanBoard()
-        }
-        repeat(2) {
-            onNodeWithText("새 태스크 생성").performClick()
-            onNodeWithText("태스크 제목을 입력하세요").performTextInput("투두 태스크 제목")
-            // 태스크 상태 디폴트: TODO
-            onNodeWithText("생성").performClick()
-        }
-
-        repeat(3) {
-            onNodeWithText("새 태스크 생성").performClick()
-            onNodeWithText("태스크 제목을 입력하세요").performTextInput("던 태스크 제목")
-            onNode (hasText("Done") and hasClickAction()).performClick()
-            onNodeWithText("생성").performClick()
+            KanbanBoardContent(
+                state = KanbanBoardState(initialTasks = todoTasks + doneTasks),
+            )
         }
 
         // then
