@@ -69,13 +69,9 @@ fun KanbanBoardContent(
         Column(modifier = Modifier) {
             KanbanTaskBoardHeader(
                 onClick = { state.showDialog = state.showDialog.not() },
-                taskList = state.taskList,
-                modifier = Modifier
-                    .border(
-                        width = 1.dp,
-                        color = Color.LightGray,
-                    )
-                    .padding(24.dp),
+                doneTaskCount = state.doneTaskCount,
+                totalTaskCount = state.totalTaskCount,
+                taskCompletion = state.taskCompletion,
             )
             Row(
                 horizontalArrangement = Arrangement.spacedBy(16.dp),

@@ -153,32 +153,6 @@ class KanbanBoardTest {
     }
 
     @Test
-    fun `태스크 리스트를 전달하면 정확한 완료율과 개수를 표시한다`() = runComposeUiTest {
-        // given
-        val testList = listOf(
-            KanbanCardForm(
-                title = "TODO 테스크",
-                assignee = Assignee("담당자1"),
-                status = TaskState.TODO,
-            ),
-            KanbanCardForm(
-                title = "DONE 테스크",
-                assignee = Assignee("담당자2"),
-                status = TaskState.DONE,
-            ),
-        )
-        // when
-        setContent {
-            KanbanTaskBoardHeader(
-                taskList = testList,
-                onClick = {},
-            )
-        }
-        // then
-        onNodeWithText("완료율: 50% (1/2)").assertExists()
-    }
-
-    @Test
     fun `보드로 주입한 태스크들의 상태가 주입과 동일하게 표시된다`() = runComposeUiTest {
         // given
         val todoTasks = List(2) {

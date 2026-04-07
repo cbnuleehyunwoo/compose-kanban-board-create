@@ -8,6 +8,14 @@ import kotlin.test.Test
 
 class KanbanBoardStateTest {
 
+
+    @Test
+    fun `초기 상태의 태스크 개수와 완료율은 0이다`() {
+        val boardState = KanbanBoardState()
+        assertEquals(0, boardState.totalTaskCount)
+        assertEquals(0f, boardState.taskCompletion)
+    }
+
     @Test
     fun `태스크를 추가하면 전체 개수가 증가한다`() {
         val newTask = createTestTask(TaskState.TODO)
@@ -16,6 +24,17 @@ class KanbanBoardStateTest {
         boardState.addTask(newTask)
 
         assertEquals(1, boardState.totalTaskCount)
+    }
+
+    @Test
+    fun `완료된 태스크 비율이 정확하게 계산된다`() {
+        val boardState = KanbanBoardState()
+        boardState.addTask(createTestTask(TaskState.DONE))
+        boardState.addTask(createTestTask(TaskState.IN_PROGRESS))
+
+        assertEquals(2, boardState.totalTaskCount)
+        assertEquals(1, boardState.doneTaskCount)
+        assertEquals(0.5f, boardState.taskCompletion)
     }
 
     @Test
