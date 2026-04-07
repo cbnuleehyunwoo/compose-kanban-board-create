@@ -1,11 +1,20 @@
 package woowacourse.kanban.board.component.taskboard
 
 import androidx.compose.ui.test.ExperimentalTestApi
+import androidx.compose.ui.test.assertAny
 import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.assertIsDisplayed
+import androidx.compose.ui.test.hasAnyAncestor
+import androidx.compose.ui.test.hasClickAction
+import androidx.compose.ui.test.hasContentDescription
+import androidx.compose.ui.test.hasText
+import androidx.compose.ui.test.isSelectable
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onChild
+import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.onParent
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.runComposeUiTest
@@ -45,7 +54,7 @@ class KanbanBoardTest {
         onNodeWithText("새 태스크 생성").performClick()
         onNodeWithText("태스크 제목을 입력하세요").performTextInput("To Do 태스크")
         onNodeWithText("생성").performClick()
-        
+
         onNodeWithText("1").assertIsDisplayed()
         onAllNodesWithText("0").assertCountEquals(2)
     }
@@ -144,28 +153,43 @@ class KanbanBoardTest {
     }
 
     @Test
-    fun `태스크 리스트를 전달하면 정확한 완료율과 개수를 표시한다`() = runComposeUiTest {
+    fun `보드로 주입한 태스크들의 상태가 주입과 동일하게 표시된다`() = runComposeUiTest {
         // given
-        val testList = listOf(
+        val todoTasks = List(2) {
             KanbanCardForm(
-                title = "TODO 테스크",
-                assignee = Assignee("담당자1"),
+                title = "투두제목",
                 status = TaskState.TODO,
-            ),
-            KanbanCardForm(
-                title = "DONE 테스크",
-                assignee = Assignee("담당자2"),
-                status = TaskState.DONE,
-            )
-        )
-        // when
-        setContent {
-            KanbanTaskBoardHeader(
-                taskList = testList,
-                onClick = {},
+                tags = listOf("태그"),
+                content = "내용",
+                assignee = Assignee("다이노"),
             )
         }
+        val doneTasks = List(3) {
+            KanbanCardForm(
+                title = "던 제목",
+                status = TaskState.DONE,
+                tags = listOf("태그"),
+                content = "내용",
+                assignee = Assignee("다이노"),
+            )
+        }
+        setContent {
+            KanbanBoardContent(
+                state = KanbanBoardState(initialTasks = todoTasks + doneTasks),
+            )
+        }
+
         // then
-        onNodeWithText("완료율: 50% (1/2)").assertExists()
+        onNodeWithText("To Do")
+            .onParent()
+            .onChildren()
+            .assertAny(hasText("2"))
+
+        onNodeWithText("Done")
+            .onParent()
+            .onChildren()
+            .assertAny(hasText("3"))
     }
 }
+
+

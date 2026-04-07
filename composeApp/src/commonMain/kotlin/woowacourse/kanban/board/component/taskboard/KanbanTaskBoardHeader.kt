@@ -28,12 +28,12 @@ import woowacourse.kanban.board.model.TaskState
 
 @Composable
 fun KanbanTaskBoardHeader(
-    taskList: List<KanbanCardForm>,
+    totalTaskCount: Int,
+    doneTaskCount: Int,
+    taskCompletion: Float,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    val doneTaskCount = taskList.count { it.status == TaskState.DONE }
-    val completion = (doneTaskCount.toFloat() / taskList.size).takeUnless { it.isNaN() } ?: 0f
     Column(
         verticalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier
@@ -77,14 +77,14 @@ fun KanbanTaskBoardHeader(
             }
 
             Text(
-                text = "완료율: ${(completion * 100).toInt()}% ($doneTaskCount/${taskList.size})",
+                text = "완료율: ${(taskCompletion * 100).toInt()}% ($doneTaskCount/$totalTaskCount)",
                 fontSize = 14.sp,
                 color = Color.Gray,
             )
 
         }
         LinearProgressIndicator(
-            progress = { completion },
+            progress = { taskCompletion },
             color = Color(0xFF4F39F6),
             trackColor = Color.White,
             modifier = Modifier
@@ -101,30 +101,15 @@ fun KanbanTaskBoardHeader(
 )
 @Composable
 fun KanbanTaskBoardHeaderPreview() {
+    val totalTaskCount = 4
+    val doneTaskCount = 2
+    val taskCompletion: Float =
+        if (totalTaskCount == 0) 0f
+        else (doneTaskCount.toFloat() / totalTaskCount)
     KanbanTaskBoardHeader(
         onClick = {},
-        taskList = listOf(
-            KanbanCardForm(
-                title = "투두",
-                assignee = Assignee("커비"),
-                tags = listOf("투두", "투두"),
-                content = "투두 내용",
-                status = TaskState.TODO,
-            ),
-            KanbanCardForm(
-                title = "완료",
-                assignee = Assignee("커비"),
-                tags = listOf("완료", "완료"),
-                content = "완료 내용",
-                status = TaskState.DONE,
-            ),
-            KanbanCardForm(
-                title = "인 프로그레스",
-                assignee = Assignee("커비"),
-                tags = listOf("인프", "인프"),
-                content = "인 프로그레스 내용",
-                status = TaskState.IN_PROGRESS,
-            ),
-        ),
+        totalTaskCount = totalTaskCount,
+        doneTaskCount = doneTaskCount,
+        taskCompletion = taskCompletion,
     )
 }

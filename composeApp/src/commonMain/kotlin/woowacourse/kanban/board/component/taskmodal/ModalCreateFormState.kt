@@ -39,6 +39,14 @@ class ModalCreateFormState {
         }
     }
 
+    fun clear() {
+        title = ""
+        content = ""
+        tag = ""
+        status = 0
+        assignee = 0
+    }
+
     private fun parseTags(): List<String> =
         tag.split(",")
             .map { it.trim() }
