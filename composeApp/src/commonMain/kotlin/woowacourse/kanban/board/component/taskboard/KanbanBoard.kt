@@ -1,7 +1,6 @@
 package woowacourse.kanban.board.component.taskboard
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,7 +26,8 @@ import woowacourse.kanban.board.model.TaskState
 fun KanbanBoard() {
     KanbanBoardContent(
         state = KanbanBoardState(),
-        modifier = Modifier
+        modifier = Modifier,
+        colorsProvider = { KanbanBoardDefaultColor.stateColors(it) }
     )
 }
 
@@ -35,6 +35,7 @@ fun KanbanBoard() {
 fun KanbanBoardContent(
     state: KanbanBoardState,
     modifier: Modifier = Modifier,
+    colorsProvider: (TaskState) -> KanbanStateColors = { KanbanBoardDefaultColor.stateColors(it) }
 ) {
 
     val snackbarState = remember { SnackbarHostState() }
@@ -80,31 +81,15 @@ fun KanbanBoardContent(
                     .padding(24.dp),
             ) {
                 TaskState.entries.forEach { taskState ->
-                    val stateTask = state.taskGroup[taskState] ?: emptyList()
-                    val holderColor = when (taskState) {
-                        TaskState.IN_PROGRESS -> HolderColor(
-                            headerContainer = Color(0xFFE17100),
-                            contentContainer = Color(0xFFFFFBEB),
-                            contentBorder = Color(0xFFFEE685),
-                        )
+                    val tasks = state.taskGroup[taskState] ?: emptyList()
+                    val colors = colorsProvider(taskState)
 
-                        TaskState.TODO -> HolderColor(
-                            headerContainer = Color(0xFF155DFC),
-                            contentContainer = Color(0xFFEFF6FF),
-                            contentBorder = Color(0xFFBEDBFF),
-                        )
-
-                        TaskState.DONE -> HolderColor(
-                            headerContainer = Color(0xFF00A63E),
-                            contentContainer = Color(0xFFF0FDF4),
-                            contentBorder = Color(0xFFB9F8CF),
-                        )
-                    }
                     KanbanCardHolder(
-                        tasks = stateTask,
+                        tasks = tasks,
                         state = taskState,
-                        holderColor = holderColor,
+                        holderColor = colors,
                     )
+
                 }
             }
         }

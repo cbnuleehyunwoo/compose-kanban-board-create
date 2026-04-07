@@ -31,7 +31,7 @@ import woowacourse.kanban.board.model.TaskState
 fun KanbanCardHolder(
     tasks: List<KanbanCardForm>,
     state: TaskState,
-    holderColor: HolderColor,
+    holderColor: KanbanStateColors,
     modifier: Modifier = Modifier,
 ) {
     val stateName = when (state) {
@@ -131,7 +131,7 @@ fun KanbanCardHolderPreview() {
 
     KanbanCardHolder(
         tasks = values,
-        holderColor = HolderColor(
+        holderColor = KanbanStateColors(
             headerContainer = Color(0xFF155DFC),
             contentContainer = Color(0xFFEFF6FF),
             contentBorder = Color(0xFFBEDBFF),
