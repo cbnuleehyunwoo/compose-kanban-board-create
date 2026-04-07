@@ -103,9 +103,10 @@ fun KanbanTaskBoardHeader(
 fun KanbanTaskBoardHeaderPreview() {
     val totalTaskCount = 4
     val doneTaskCount = 2
-    val taskCompletion: Float = if (totalTaskCount == 0) 0f
-    else (doneTaskCount.toFloat() / totalTaskCount)
-        KanbanTaskBoardHeader(
+    val taskCompletion: Float =
+        if (totalTaskCount == 0) 0f
+        else (doneTaskCount.toFloat() / totalTaskCount)
+    KanbanTaskBoardHeader(
         onClick = {},
         totalTaskCount = totalTaskCount,
         doneTaskCount = doneTaskCount,
